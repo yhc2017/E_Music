@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <!--用户名片-->
+<RelativeLayout
+    android:id="@+id/user"
+    android:layout_centerHorizontal="true"
+    android:layout_width="362dp"
+    android:layout_height="162dp"
+    android:layout_marginTop="13dp"
+    android:background="#000">
+</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/userFunction"
+        android:layout_centerHorizontal="true"
+        android:layout_width="362dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/user"
+        android:background="#f0f000">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/userTabs"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+        />
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tab_container"
+        android:layout_centerHorizontal="true"
+        android:layout_width="362dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/userFunction"
+        android:background="#f00">
+
+    </android.support.v4.view.ViewPager>
+</RelativeLayout>

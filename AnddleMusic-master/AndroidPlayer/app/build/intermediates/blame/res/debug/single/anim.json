@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\App\\AnddleMusic-master\\AndroidPlayer\\app\\build\\intermediates\\res\\merged\\debug\\anim\\menu_in.xml",
+        "source": "E:\\App\\AnddleMusic-master\\AndroidPlayer\\app\\src\\main\\res\\anim\\menu_in.xml"
+    },
+    {
+        "merged": "E:\\App\\AnddleMusic-master\\AndroidPlayer\\app\\build\\intermediates\\res\\merged\\debug\\anim\\menu_out.xml",
+        "source": "E:\\App\\AnddleMusic-master\\AndroidPlayer\\app\\src\\main\\res\\anim\\menu_out.xml"
+    }
+]
