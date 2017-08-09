@@ -50,19 +50,12 @@ public class MusicListActivity extends AppCompatActivity {
     //导航栏
     private Toolbar toolbar;
     private ImageView barMore,barSearch, barMine, barMusic, barFriend;
-    private Button music_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_music_list);
-//        Toolbar toolbar = (Toolbar) findViewById(toolbar);
-//        setSupportActionBar(toolbar);
-
-
-        setViewPager();
-//        music_card = (Button) findViewById(R.id.music_card);
         mMusicList = new ArrayList<MusicItem>();
         mMusicListView = (ListView) findViewById(R.id.music_list);
         MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
@@ -77,7 +70,7 @@ public class MusicListActivity extends AppCompatActivity {
         mNextBtn = (Button) findViewById(R.id.next_btn);
 
         mMusicTitle = (TextView) findViewById(R.id.music_title);
-        mImageView = (ImageView) findViewById(R.id.image_thumb);
+
         mDurationTime = (TextView) findViewById(R.id.duration_time);
         mPlayedTime = (TextView) findViewById(R.id.played_time);
         mMusicSeekBar = (SeekBar) findViewById(R.id.seek_music);
@@ -90,6 +83,8 @@ public class MusicListActivity extends AppCompatActivity {
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
 
+
+        setViewPager();
         Button_Click();
         settoolbar();
     }
@@ -129,6 +124,7 @@ public class MusicListActivity extends AppCompatActivity {
 
     //按钮事件
     public void Button_Click(){
+        mImageView = (ImageView) findViewById(R.id.image_thumb);
         mImageView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -146,6 +142,7 @@ public class MusicListActivity extends AppCompatActivity {
 
         });
     }
+
 
     @Override
     protected void onDestroy() {

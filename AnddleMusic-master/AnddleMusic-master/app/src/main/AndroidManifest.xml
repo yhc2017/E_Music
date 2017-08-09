@@ -46,8 +46,7 @@
         <activity android:name=".PlayMusicView" />
         <activity android:name=".MusicListView" >
             <intent-filter>
-                <action  android:name = "com.android.activity.MY_ACTION"  />
-                <category android:name = "android.intent.category.DEFAULT"  />
+                <action  android:name = "com.anddle.music.MY_ACTION"  />
             </intent-filter>
         </activity>
     </application>

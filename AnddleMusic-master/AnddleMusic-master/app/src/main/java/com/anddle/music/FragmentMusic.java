@@ -14,27 +14,21 @@ import android.widget.Button;
  */
 
 public class FragmentMusic extends Fragment{
+
+    private Button button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragemnt_music, container, false);
+        button = (Button) view.findViewById(R.id.music_card);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , MusicListView.class);
+                startActivity(intent);
+            }
+        });
         return view;
+
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Button button = (Button) getActivity().findViewById(R.id.music_card);
-            button.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    // 实例化Intent
-                    Intent it = new Intent();
-                    //设置Intent的Action属性
-                    it.setAction("com.anddle.music.MY_ACTION");
-                    // 启动Activity
-                    startActivity(it);
-
-                }
-            });
-        }
 }

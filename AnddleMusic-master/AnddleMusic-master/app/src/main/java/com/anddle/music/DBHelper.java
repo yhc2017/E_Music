@@ -4,10 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+//本地数据库
 public class DBHelper extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "playlist.db";
-    private final static int DB_VERSION = 10;
+    private final static int DB_VERSION = 11;
     public final static String PLAYLIST_TABLE_NAME = "playlist_table";
 
     public final static String ID = "id";
