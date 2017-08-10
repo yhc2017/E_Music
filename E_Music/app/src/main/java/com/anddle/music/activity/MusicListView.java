@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -40,9 +39,6 @@ public class MusicListView extends AppCompatActivity {
     static public String TAG = "MusicListView";
     private List<MusicItem> mMusicList;
     private ListView mMusicListView;
-    private Button mPlayBtn;
-    private Button mPreBtn;
-    private Button mNextBtn;
     private TextView mMusicTitle;
     private TextView mPlayedTime;
     private TextView mDurationTime;
@@ -75,9 +71,9 @@ public class MusicListView extends AppCompatActivity {
         mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
 
-        mPlayBtn = (Button) findViewById(R.id.play_btn);
-        mPreBtn = (Button) findViewById(R.id.pre_btn);
-        mNextBtn = (Button) findViewById(R.id.next_btn);
+//        mPlayBtn = (Button) findViewById(R.id.play_btn);
+//        mPreBtn = (Button) findViewById(R.id.pre_btn);
+//        mNextBtn = (Button) findViewById(R.id.next_btn);
 
         mMusicTitle = (TextView) findViewById(R.id.music_title);
 
@@ -230,9 +226,9 @@ public class MusicListView extends AppCompatActivity {
             else {
                 updatePlayingInfo(item);
             }
-            if(mMusicService.isPlaying()) {
-                mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
-            }
+//            if(mMusicService.isPlaying()) {
+//                mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
+//            }
         }
 
         @Override
@@ -257,9 +253,9 @@ public class MusicListView extends AppCompatActivity {
     }
 
     private void enableControlPanel(boolean enabled) {
-        mPlayBtn.setEnabled(enabled);
-        mPreBtn.setEnabled(enabled);
-        mNextBtn.setEnabled(enabled);
+//        mPlayBtn.setEnabled(enabled);
+//        mPreBtn.setEnabled(enabled);
+//        mNextBtn.setEnabled(enabled);
         mMusicSeekBar.setEnabled(enabled);
     }
 
@@ -273,14 +269,14 @@ public class MusicListView extends AppCompatActivity {
 
         @Override
         public void onPlay(MusicItem item) {
-            mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
+//            mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
             updatePlayingInfo(item);
             enableControlPanel(true);
         }
 
         @Override
         public void onPause(MusicItem item) {
-            mPlayBtn.setBackgroundResource(R.mipmap.ic_play);
+//            mPlayBtn.setBackgroundResource(R.mipmap.ic_play);
             enableControlPanel(true);
         }
     };
@@ -288,17 +284,6 @@ public class MusicListView extends AppCompatActivity {
     private AdapterView.OnItemClickListener mOnMusicItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //添加播放⾳音乐的代码
-//            MusicItem item = mMusicList.get(position);
-//            MediaPlayer mMusicPlayer  = new MediaPlayer();
-//            try {
-//                mMusicPlayer.reset();
-//                mMusicPlayer.setDataSource(MusicListView.this, item.songUri);
-//                mMusicPlayer.prepare();
-//                mMusicPlayer.start();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             if(mMusicService != null) {
                 mMusicService.addPlayList(mMusicList.get(position));
             }
