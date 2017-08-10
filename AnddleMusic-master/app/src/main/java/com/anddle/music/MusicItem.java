@@ -5,14 +5,14 @@ import android.net.Uri;
 
 public class MusicItem {
 
-    String name;
-    Uri songUri;
-    Uri albumUri;
-    Bitmap thumb;
-    long duration;
-    long playedTime;
+    public String name;
+    public Uri songUri;
+    public Uri albumUri;
+    public Bitmap thumb;
+    public long duration;
+    public long playedTime;
 
-    MusicItem(Uri songUri, Uri albumUri, String strName, long duration, long playedTime) {
+    public MusicItem(Uri songUri, Uri albumUri, String strName, long duration, long playedTime) {
         this.name = strName;
         this.songUri = songUri;
         this.duration = duration;

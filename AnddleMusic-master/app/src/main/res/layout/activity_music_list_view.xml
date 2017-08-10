@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.anddle.music.MusicListView">
+    tools:context="com.anddle.music.activity.MusicListView">
 
     <ListView
         android:layout_weight="1"

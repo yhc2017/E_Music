@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MusicListActivity"
+            android:name=".activity.MusicListActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
         </activity>
 
         <service
-            android:name=".MusicService"
+            android:name=".service.MusicService"
             android:enabled="true"
             android:exported="true" />
 
@@ -42,9 +42,9 @@
                 android:resource="@xml/anddle_music_app_widget_info" />
         </receiver>
 
-        <activity android:name=".Activity_nav" />
-        <activity android:name=".PlayMusicView" />
-        <activity android:name=".MusicListView" >
+        <activity android:name=".activity.Activity_nav" />
+        <activity android:name=".activity.PlayMusicView" />
+        <activity android:name=".activity.MusicListView" >
             <intent-filter>
                 <action  android:name = "com.anddle.music.MY_ACTION"  />
             </intent-filter>
