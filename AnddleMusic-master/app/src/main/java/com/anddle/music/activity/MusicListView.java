@@ -3,6 +3,7 @@ package com.anddle.music.activity;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,7 +12,12 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,9 +26,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.anddle.music.MusicItem;
-import com.anddle.music.service.MusicService;
 import com.anddle.music.R;
 import com.anddle.music.adapter.MusicItemAdapter;
+import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 
 import java.util.ArrayList;
@@ -48,10 +54,26 @@ public class MusicListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_list_view);
 
+
+        mMusicUpdateTask = new MusicUpdateTask();
+        mMusicUpdateTask.execute();
+
+
+//        mMusicList = new ArrayList<MusicItem>();
+//        mMusicListView = (ListView) findViewById(R.id.music_list);
+//        MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
+//        mMusicListView.setAdapter(adapter);
+//        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
+//        mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+//        mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
         mMusicList = new ArrayList<MusicItem>();
         mMusicListView = (ListView) findViewById(R.id.music_list);
         MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
         mMusicListView.setAdapter(adapter);
+        //设置监听器器
+        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
+        mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
 
         mPlayBtn = (Button) findViewById(R.id.play_btn);
         mPreBtn = (Button) findViewById(R.id.pre_btn);
@@ -64,8 +86,21 @@ public class MusicListView extends AppCompatActivity {
         mMusicSeekBar = (SeekBar) findViewById(R.id.seek_music);
         mMusicSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
 
-        //设置监听器器
-        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
+
+
+        Intent i = new Intent(this, MusicService.class);
+        startService(i);
+        bindService(i, mServiceConnection, BIND_AUTO_CREATE);
+
+        mImageView = (ImageView) findViewById(R.id.image_thumb);
+        mImageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MusicListView.this, PlayMusicView.class);
+                startActivity(intent);
+            }
+
+        });
     }
 
 //更新信息
@@ -233,7 +268,6 @@ public class MusicListView extends AppCompatActivity {
 
         @Override
         public void onPlayProgressChange(MusicItem item) {
-
             updatePlayingInfo(item);
         }
 
@@ -271,4 +305,51 @@ public class MusicListView extends AppCompatActivity {
         }
     };
 
+    private ListView.MultiChoiceModeListener mMultiChoiceListener = new AbsListView.MultiChoiceModeListener() {
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            getMenuInflater().inflate(R.menu.music_choice_actionbar, menu);
+            enableControlPanel(false);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return true;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch(item.getItemId()) {
+                case R.id.menu_play: {
+                    List musicList = new ArrayList<MusicItem>();
+                    SparseBooleanArray checkedResult = mMusicListView.getCheckedItemPositions();
+                    for (int i = 0; i < checkedResult.size(); i++) {
+                        if(checkedResult.valueAt(i)) {
+                            int pos = checkedResult.keyAt(i);
+                            MusicItem music = mMusicList.get(pos);
+                            musicList.add(music);
+                        }
+                    }
+
+                    mMusicService.addPlayList(musicList);
+
+                    mode.finish();
+                }
+                break;
+            }
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            enableControlPanel(true);
+        }
+
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+        }
+    };
 }

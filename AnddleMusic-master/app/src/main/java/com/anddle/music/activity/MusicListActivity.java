@@ -2,42 +2,28 @@ package com.anddle.music.activity;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.util.SparseBooleanArray;
-import android.view.ActionMode;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.anddle.music.adapter.FragAdapter;
 import com.anddle.music.MusicItem;
-import com.anddle.music.service.MusicService;
 import com.anddle.music.R;
-import com.anddle.music.adapter.MusicItemAdapter;
+import com.anddle.music.adapter.FragAdapter;
 import com.anddle.music.fragment.FragmentFriend;
 import com.anddle.music.fragment.FragmentMine;
 import com.anddle.music.fragment.FragmentMusic;
+import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 
 import java.util.ArrayList;
@@ -45,9 +31,9 @@ import java.util.List;
 
 public class MusicListActivity extends AppCompatActivity {
 
-    static public String TAG = "MusicListActivity";
-    private List<MusicItem> mMusicList;
-    private ListView mMusicListView;
+//    static public String TAG = "MusicListActivity";
+//    private List<MusicItem> mMusicList;
+//    private ListView mMusicListView;
     private Button mPlayBtn;
     private Button mPreBtn;
     private Button mNextBtn;
@@ -56,7 +42,7 @@ public class MusicListActivity extends AppCompatActivity {
     private TextView mDurationTime;
     private SeekBar mMusicSeekBar;
     private ImageView mImageView;
-    private MusicUpdateTask mMusicUpdateTask;
+//    private MusicUpdateTask mMusicUpdateTask;
     //导航栏
     private Toolbar toolbar;
     private ImageView barMore,barSearch, barMine, barMusic, barFriend;
@@ -66,13 +52,13 @@ public class MusicListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_music_list);
-        mMusicList = new ArrayList<MusicItem>();
-        mMusicListView = (ListView) findViewById(R.id.music_list);
-        MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
-        mMusicListView.setAdapter(adapter);
-        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
-        mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-        mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
+//        mMusicList = new ArrayList<MusicItem>();
+//        mMusicListView = (ListView) findViewById(R.id.music_list);
+//        MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
+//        mMusicListView.setAdapter(adapter);
+//        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
+//        mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+//        mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
 
 
         mPlayBtn = (Button) findViewById(R.id.play_btn);
@@ -86,8 +72,8 @@ public class MusicListActivity extends AppCompatActivity {
         mMusicSeekBar = (SeekBar) findViewById(R.id.seek_music);
         mMusicSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
 
-        mMusicUpdateTask = new MusicUpdateTask();
-        mMusicUpdateTask.execute();
+//        mMusicUpdateTask = new MusicUpdateTask();
+//        mMusicUpdateTask.execute();
 
         Intent i = new Intent(this, MusicService.class);
         startService(i);
@@ -183,21 +169,21 @@ public class MusicListActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if(mMusicUpdateTask != null && mMusicUpdateTask.getStatus() == AsyncTask.Status.RUNNING) {
-            mMusicUpdateTask.cancel(true);
-        }
-
-        mMusicUpdateTask = null;
-        mMusicService.unregisterOnStateChangeListener(mStateChangeListenr);
-        unbindService(mServiceConnection);
-
-        for(MusicItem item : mMusicList) {
-            if( item.thumb != null ) {
-                item.thumb.recycle();
-                item.thumb = null;
-            }
-        }
-        mMusicList.clear();
+//        if(mMusicUpdateTask != null && mMusicUpdateTask.getStatus() == AsyncTask.Status.RUNNING) {
+//            mMusicUpdateTask.cancel(true);
+//        }
+//
+//        mMusicUpdateTask = null;
+//        mMusicService.unregisterOnStateChangeListener(mStateChangeListenr);
+//        unbindService(mServiceConnection);
+//
+//        for(MusicItem item : mMusicList) {
+//            if( item.thumb != null ) {
+//                item.thumb.recycle();
+//                item.thumb = null;
+//            }
+//        }
+//        mMusicList.clear();
     }
 
     private SeekBar.OnSeekBarChangeListener mOnSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -221,64 +207,64 @@ public class MusicListActivity extends AppCompatActivity {
         }
     };
 
-    private AdapterView.OnItemClickListener mOnMusicItemClickListener = new AdapterView.OnItemClickListener() {
+//    private AdapterView.OnItemClickListener mOnMusicItemClickListener = new AdapterView.OnItemClickListener() {
+//
+//        @Override
+//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//            if(mMusicService != null) {
+//                mMusicService.addPlayList(mMusicList.get(position));
+//            }
+//        }
+//    };
 
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            if(mMusicService != null) {
-                mMusicService.addPlayList(mMusicList.get(position));
-            }
-        }
-    };
-
-    private ListView.MultiChoiceModeListener mMultiChoiceListener = new AbsListView.MultiChoiceModeListener() {
-
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            getMenuInflater().inflate(R.menu.music_choice_actionbar, menu);
-            enableControlPanel(false);
-            return true;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return true;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            switch(item.getItemId()) {
-                case R.id.menu_play: {
-                    List musicList = new ArrayList<MusicItem>();
-                    SparseBooleanArray checkedResult = mMusicListView.getCheckedItemPositions();
-                    for (int i = 0; i < checkedResult.size(); i++) {
-                        if(checkedResult.valueAt(i)) {
-                            int pos = checkedResult.keyAt(i);
-                            MusicItem music = mMusicList.get(pos);
-                            musicList.add(music);
-                        }
-                    }
-
-                    mMusicService.addPlayList(musicList);
-
-                    mode.finish();
-                }
-                break;
-            }
-            return true;
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            enableControlPanel(true);
-        }
-
-        @Override
-        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-
-        }
-    };
+//    private ListView.MultiChoiceModeListener mMultiChoiceListener = new AbsListView.MultiChoiceModeListener() {
+//
+//        @Override
+//        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+//            getMenuInflater().inflate(R.menu.music_choice_actionbar, menu);
+//            enableControlPanel(false);
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+//            return true;
+//        }
+//
+//        @Override
+//        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+//            switch(item.getItemId()) {
+//                case R.id.menu_play: {
+//                    List musicList = new ArrayList<MusicItem>();
+//                    SparseBooleanArray checkedResult = mMusicListView.getCheckedItemPositions();
+//                    for (int i = 0; i < checkedResult.size(); i++) {
+//                        if(checkedResult.valueAt(i)) {
+//                            int pos = checkedResult.keyAt(i);
+//                            MusicItem music = mMusicList.get(pos);
+//                            musicList.add(music);
+//                        }
+//                    }
+//
+//                    mMusicService.addPlayList(musicList);
+//
+//                    mode.finish();
+//                }
+//                break;
+//            }
+//            return true;
+//        }
+//
+//        @Override
+//        public void onDestroyActionMode(ActionMode mode) {
+//            enableControlPanel(true);
+//        }
+//
+//        @Override
+//        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+//
+//        }
+//    };
 
     private void enableControlPanel(boolean enabled) {
         mPlayBtn.setEnabled(enabled);
@@ -324,74 +310,74 @@ public class MusicListActivity extends AppCompatActivity {
         }
     };
 
-    private class MusicUpdateTask extends AsyncTask<Object, MusicItem, Void> {
-
-        List<MusicItem> mDataList = new ArrayList<MusicItem>();
-
-        @Override
-        protected Void doInBackground(Object... params) {
-
-            Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-            //信息
-            String[] searchKey = new String[] {
-                    MediaStore.Audio.Media._ID,
-                    MediaStore.Audio.Media.TITLE,
-                    MediaStore.Audio.Media.ARTIST,
-                    MediaStore.Audio.Albums.ALBUM_ID,
-                    MediaStore.Audio.Media.DATA,
-                    MediaStore.Audio.Media.DURATION
-            };
-
-            String where = MediaStore.Audio.Media.DATA + " like \"%"+getString(R.string.search_path)+"%\"";
-            String [] keywords = null;
-            String sortOrder = MediaStore.Audio.Media.DEFAULT_SORT_ORDER;
-
-            ContentResolver resolver = getContentResolver();
-            Cursor cursor = resolver.query(uri, searchKey, where, keywords, sortOrder);
-
-            if(cursor != null)
-            {
-                while(cursor.moveToNext() && ! isCancelled())
-                {
-                    String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
-                    String id = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
-                    Uri musicUri = Uri.withAppendedPath(uri, id);
-
-                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)) +"\n 歌手："+ cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-                    long duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
-
-
-                    int albumId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ID));
-                    Uri albumUri = ContentUris.withAppendedId(Uri.parse("content://media/external/audio/albumart"), albumId);
-                    MusicItem data = new MusicItem(musicUri, albumUri, name, duration, 0);
-                    if (uri != null) {
-                        ContentResolver res = getContentResolver();
-                        data.thumb = Utils.createThumbFromUir(res, albumUri);
-                    }
-
-                    Log.d(TAG, "real music found: " + path);
-
-                    publishProgress(data);
-
-                }
-
-                cursor.close();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(MusicItem... values) {
-
-            MusicItem data = values[0];
-
-            mMusicList.add(data);
-            MusicItemAdapter adapter = (MusicItemAdapter) mMusicListView.getAdapter();
-            adapter.notifyDataSetChanged();
-
-        }
-    }
+//    private class MusicUpdateTask extends AsyncTask<Object, MusicItem, Void> {
+//
+//        List<MusicItem> mDataList = new ArrayList<MusicItem>();
+//
+//        @Override
+//        protected Void doInBackground(Object... params) {
+//
+//            Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+//            //信息
+//            String[] searchKey = new String[] {
+//                    MediaStore.Audio.Media._ID,
+//                    MediaStore.Audio.Media.TITLE,
+//                    MediaStore.Audio.Media.ARTIST,
+//                    MediaStore.Audio.Albums.ALBUM_ID,
+//                    MediaStore.Audio.Media.DATA,
+//                    MediaStore.Audio.Media.DURATION
+//            };
+//
+//            String where = MediaStore.Audio.Media.DATA + " like \"%"+getString(R.string.search_path)+"%\"";
+//            String [] keywords = null;
+//            String sortOrder = MediaStore.Audio.Media.DEFAULT_SORT_ORDER;
+//
+//            ContentResolver resolver = getContentResolver();
+//            Cursor cursor = resolver.query(uri, searchKey, where, keywords, sortOrder);
+//
+//            if(cursor != null)
+//            {
+//                while(cursor.moveToNext() && ! isCancelled())
+//                {
+//                    String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
+//                    String id = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
+//                    Uri musicUri = Uri.withAppendedPath(uri, id);
+//
+//                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)) +"\n 歌手："+ cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+//                    long duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
+//
+//
+//                    int albumId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ID));
+//                    Uri albumUri = ContentUris.withAppendedId(Uri.parse("content://media/external/audio/albumart"), albumId);
+//                    MusicItem data = new MusicItem(musicUri, albumUri, name, duration, 0);
+//                    if (uri != null) {
+//                        ContentResolver res = getContentResolver();
+//                        data.thumb = Utils.createThumbFromUir(res, albumUri);
+//                    }
+//
+//                    Log.d(TAG, "real music found: " + path);
+//
+//                    publishProgress(data);
+//
+//                }
+//
+//                cursor.close();
+//            }
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(MusicItem... values) {
+//
+//            MusicItem data = values[0];
+//
+//            mMusicList.add(data);
+//            MusicItemAdapter adapter = (MusicItemAdapter) mMusicListView.getAdapter();
+//            adapter.notifyDataSetChanged();
+//
+//        }
+//    }
 
     private MusicService.MusicServiceIBinder mMusicService;
 
