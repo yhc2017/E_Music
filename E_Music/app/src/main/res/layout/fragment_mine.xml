@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
+<!--滚动视图-->
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
-
-    <!--用户名片-->
+    android:scrollbarSize="10dp"
+    android:scrollbarStyle="insideInset"
+    android:fillViewport="true"
+    android:scrollbars="none">
     <RelativeLayout
-        android:id="@+id/userFunction"
-        android:layout_centerHorizontal="true"
-        android:layout_width="362dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/user"
-        android:background="#f0f000">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <!--用户名片-->
+        <RelativeLayout
+            android:id="@+id/user"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="162dp"
+            android:layout_marginTop="13dp"
+            android:background="#fff">
+        </RelativeLayout>
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/userFunction"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_width="362dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_below="@+id/user"-->
+        <!--android:background="#f0f000">-->
         <android.support.design.widget.TabLayout
             android:id="@+id/userTabs"
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-        />
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/user"
+            android:background="#ffff"
+            app:tabIndicatorColor="#f00"
+            app:tabTextColor="@color/colorPrimary"
+            app:tabSelectedTextColor="#CC33FF"
+            />
+        <!--app:tabMode="fixed"-->
+        <!--</RelativeLayout>-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/tab"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/userTabs"
+            android:background="#fff">
+
+        </android.support.v4.view.ViewPager>
     </RelativeLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/tab_container"
-        android:layout_centerHorizontal="true"
-        android:layout_width="362dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/userFunction"
-        android:background="#f00">
-
-    </android.support.v4.view.ViewPager>
-
-    <ListView
-        android:id="@+id/user"
-        android:layout_width="362dp"
-        android:layout_height="162dp"
-        android:layout_marginTop="13dp"
-        android:background="#000"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/userFunction">
-    </ListView>
-</RelativeLayout>
+</ScrollView>
