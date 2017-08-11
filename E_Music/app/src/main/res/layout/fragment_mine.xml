@@ -39,9 +39,9 @@
             android:layout_marginTop="10dp"
             android:layout_below="@+id/user"
             android:background="#ffff"
-            app:tabIndicatorColor="#f00"
-            app:tabTextColor="@color/colorPrimary"
-            app:tabSelectedTextColor="#CC33FF"
+            app:tabIndicatorColor="#1993FB"
+            app:tabTextColor="#000"
+            app:tabSelectedTextColor="#1993FB"
             />
         <!--app:tabMode="fixed"-->
         <!--</RelativeLayout>-->

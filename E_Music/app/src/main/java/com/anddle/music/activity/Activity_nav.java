@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.anddle.music.adapter.FragAdapter;
 import com.anddle.music.R;
 import com.anddle.music.fragment.FragmentFriend;
-import com.anddle.music.fragment.FragmentMine;
 import com.anddle.music.fragment.FragmentMusic;
+import com.anddle.music.fragment.fragmentmine.FragmentMine;
 
 import java.util.ArrayList;
 import java.util.List;

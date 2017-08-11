@@ -21,8 +21,8 @@ import com.anddle.music.MusicItem;
 import com.anddle.music.R;
 import com.anddle.music.adapter.FragAdapter;
 import com.anddle.music.fragment.FragmentFriend;
-import com.anddle.music.fragment.FragmentMine;
 import com.anddle.music.fragment.FragmentMusic;
+import com.anddle.music.fragment.fragmentmine.FragmentMine;
 import com.anddle.music.handler.HandlerUtil;
 import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
@@ -55,7 +55,7 @@ public class MusicListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         splashScreen = new SplashScreen(this);
-        splashScreen.show(R.drawable.logo_2, SplashScreen.SLIDE_LEFT);//一进入APP先是一幅图片（引导图片）
+        splashScreen.show(R.drawable.loading, SplashScreen.SLIDE_LEFT);//一进入APP先是一幅图片（引导图片）
 
         super.onCreate(savedInstanceState);
 
