@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anddle.music.MusicItem;
@@ -58,14 +59,14 @@ public class MusicItemAdapter extends BaseAdapter {
         String times = Utils.convertMSecendToTime(item.duration);
         times = String.format(mContext.getString(R.string.duration), times);
         createTime.setText(times);
-//        ImageView thumb = (ImageView) convertView.findViewById(R.id.music_thumb);
-//        if(thumb != null) {
-//            if (item.thumb != null) {
-//                thumb.setImageBitmap(item.thumb);
-//            } else {
-//                thumb.setImageResource(R.mipmap.default_cover);
-//            }
-//        }
+        ImageView thumb = (ImageView) convertView.findViewById(R.id.music_thumb);
+        if(thumb != null) {
+            if (item.thumb != null) {
+                thumb.setImageBitmap(item.thumb);
+            } else {
+                thumb.setImageResource(R.mipmap.default_cover);
+            }
+        }
 
         return convertView;
     }

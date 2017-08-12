@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -133,7 +134,7 @@ public class MusicListView extends AppCompatActivity {
                     String id = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
                     Uri musicUri = Uri.withAppendedPath(uri, id);
 
-                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)) +"\n 歌手："+ cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)) +"     歌手："+ cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
                     long duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
 
 
@@ -145,7 +146,7 @@ public class MusicListView extends AppCompatActivity {
                         data.thumb = Utils.createThumbFromUir(res, albumUri);
                     }
 
-//                    Log.d(TAG, "real music found: " + path);
+                   Log.d(TAG, "real music found: " + path);
 
                     publishProgress(data);
 

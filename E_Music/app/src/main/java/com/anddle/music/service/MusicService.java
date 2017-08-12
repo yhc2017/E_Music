@@ -29,7 +29,6 @@ public class MusicService extends Service {
 
 
     public interface OnStateChangeListenr {
-
         void onPlayProgressChange(MusicItem item);
         void onPlay(MusicItem item);
         void onPause(MusicItem item);
@@ -352,6 +351,7 @@ public class MusicService extends Service {
                 prepareToPlay(item);
             }
 
+//            mMusicPlayer.reset();
             mMusicPlayer.start();
 
             seekToInner((int)item.playedTime);

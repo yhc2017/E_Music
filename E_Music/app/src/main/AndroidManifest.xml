@@ -44,11 +44,16 @@
 
         <activity android:name=".activity.Activity_nav" />
         <activity android:name=".activity.PlayMusicView" />
-        <activity android:name=".activity.MusicListView" >
+        <activity android:name=".activity.MusicListView">
             <intent-filter>
-                <action  android:name = "com.anddle.music.MY_ACTION"  />
+                <action android:name="com.anddle.music.MY_ACTION" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.PlayService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
