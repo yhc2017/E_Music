@@ -1,5 +1,6 @@
 package com.anddle.music.activity;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -10,6 +11,7 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -20,11 +22,15 @@ import com.anddle.music.R;
 import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayMusicView extends AppCompatActivity {
 
     private Button mPlayBtn;
     private Button mPreBtn;
     private Button mNextBtn;
+    private Button mList;
     private TextView mMusicTitle;
     private TextView mPlayedTime;
     private TextView mDurationTime;
@@ -39,12 +45,13 @@ public class PlayMusicView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.music_player);
-        //全局显示
+        //全局显示-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mPlayBtn = (Button) findViewById(R.id.playing_play);
         mPreBtn = (Button) findViewById(R.id.playing_pre);
         mNextBtn = (Button) findViewById(R.id.playing_next);
+        mList = (Button) findViewById(R.id.playing_playlist);
 
         mMusicTitle = (TextView) findViewById(R.id.music_title);
         mImageView = (ImageView) findViewById(R.id.image_thumb);
@@ -58,8 +65,43 @@ public class PlayMusicView extends AppCompatActivity {
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
 
 
+        BtClick();
+
+    }
+
+    //按钮事件
+    public void BtClick(){
+        mList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPlayList();
+            }
+        });
 
 
+    }
+    //弹出播放列表(保存在数据库中的歌)
+    private void showPlayList() {
+
+        final AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_playlist);
+        builder.setTitle(R.string.play_list);
+
+        List<MusicItem> playList = mMusicService.getPlayList();
+        ArrayList<String> data = new ArrayList<String>();
+        for(MusicItem music : playList) {
+            data.add(music.name);
+        }
+        if(data.size() > 0) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+            builder.setAdapter(adapter, null);
+        }
+        else {
+            builder.setMessage(getString(R.string.no_song));
+        }
+
+        builder.setCancelable(true);
+        builder.create().show();
     }
 
 
@@ -77,12 +119,14 @@ public class PlayMusicView extends AppCompatActivity {
 //添加专辑图
         if (item.thumb != null) {
             mImageView.setImageBitmap(item.thumb);
-            Bitmap bitmap = fastblur(item.thumb, 50);
+            //传入专辑图片到fastblur方法。
+            Bitmap bitmap = fastblur(item.thumb, 100);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
             getWindow().setBackgroundDrawable(bitmapDrawable);
         }
         else {
             mImageView.setImageResource(R.mipmap.default_cover);
+
         }
 
     }

@@ -60,14 +60,6 @@ public class MusicListView extends AppCompatActivity {
         mMusicUpdateTask = new MusicUpdateTask();
         mMusicUpdateTask.execute();
 
-
-//        mMusicList = new ArrayList<MusicItem>();
-//        mMusicListView = (ListView) findViewById(R.id.music_list);
-//        MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
-//        mMusicListView.setAdapter(adapter);
-//        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
-//        mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-//        mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
         mMusicList = new ArrayList<MusicItem>();
         mMusicListView = (ListView) findViewById(R.id.music_list);
         MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
@@ -297,6 +289,7 @@ public class MusicListView extends AppCompatActivity {
             }
         }
     };
+
 
     private ListView.MultiChoiceModeListener mMultiChoiceListener = new AbsListView.MultiChoiceModeListener() {
 

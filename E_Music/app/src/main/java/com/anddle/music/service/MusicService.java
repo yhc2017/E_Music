@@ -85,6 +85,7 @@ public class MusicService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         if(intent != null) {
+            //广播
             String action = intent.getAction();
             if (action != null) {
                 if (ACTION_PLAY_MUSIC_PRE.equals(action)) {
@@ -169,19 +170,20 @@ public class MusicService extends Service {
         public void addPlayList(MusicItem item) {
             addPlayListInner(item, true);
         }
-
+        //播放
         public void play() {
             playInner();
         }
 
+        //下一首
         public void playNext() {
             playNextInner();
         }
-
+        //上一首
         public void playPre() {
             playPreInner();
         }
-
+        //停止
         public void pause() {
             pauseInner();
         }
@@ -260,10 +262,12 @@ public class MusicService extends Service {
     }
 
     private void playInner() {
+        //mCurrentMusicItem == null && mPlayList.size() > 0，选第一首歌播放
         if(mCurrentMusicItem == null && mPlayList.size() > 0) {
             mCurrentMusicItem = mPlayList.get(0);
         }
 
+        //playMusicItem中要传入Boolean，是否为第一次播放，第一次播放要setDataSource()设置音频播放位置
         if(mPaused) {
             playMusicItem(mCurrentMusicItem, false);
         }
@@ -342,6 +346,7 @@ public class MusicService extends Service {
         }
     }
 
+    //播放音乐的方法，
     private void playMusicItem(MusicItem item, boolean reload) {
             if(item == null) {
                 return;
@@ -350,10 +355,9 @@ public class MusicService extends Service {
             if(reload) {
                 prepareToPlay(item);
             }
-
-//            mMusicPlayer.reset();
+        //开始播放
             mMusicPlayer.start();
-
+        //进度条
             seekToInner((int)item.playedTime);
             for(OnStateChangeListenr l : mListenerList) {
                 l.onPlay(item);
@@ -362,7 +366,7 @@ public class MusicService extends Service {
 
             mHandler.removeMessages(MSG_PROGRESS_UPDATE);
             mHandler.sendEmptyMessage(MSG_PROGRESS_UPDATE);
-
+        //更新桌面小控件
             updateAppWidget(mCurrentMusicItem);
     }
 
