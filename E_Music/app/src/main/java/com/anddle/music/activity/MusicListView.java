@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -40,6 +41,10 @@ public class MusicListView extends AppCompatActivity {
     static public String TAG = "MusicListView";
     private List<MusicItem> mMusicList;
     private ListView mMusicListView;
+
+    private Button mPlayBtn;
+    private Button mPreBtn;
+    private Button mNextBtn;
     private TextView mMusicTitle;
     private TextView mPlayedTime;
     private TextView mDurationTime;
@@ -72,9 +77,9 @@ public class MusicListView extends AppCompatActivity {
         mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
 
-//        mPlayBtn = (Button) findViewById(R.id.play_btn);
-//        mPreBtn = (Button) findViewById(R.id.pre_btn);
-//        mNextBtn = (Button) findViewById(R.id.next_btn);
+        mPlayBtn = (Button) findViewById(R.id.play_btn);
+        mPreBtn = (Button) findViewById(R.id.pre_btn);
+        mNextBtn = (Button) findViewById(R.id.next_btn);
 
         mMusicTitle = (TextView) findViewById(R.id.music_title);
 
@@ -250,13 +255,15 @@ public class MusicListView extends AppCompatActivity {
         mMusicSeekBar.setProgress((int) item.playedTime);
 
         mMusicTitle.setText(item.name);
+        if(item.thumb != null)
         mImageView.setImageBitmap(item.thumb);
+        else mImageView.setImageResource(R.mipmap.default_cover);
     }
 
     private void enableControlPanel(boolean enabled) {
-//        mPlayBtn.setEnabled(enabled);
-//        mPreBtn.setEnabled(enabled);
-//        mNextBtn.setEnabled(enabled);
+        mPlayBtn.setEnabled(enabled);
+        mPreBtn.setEnabled(enabled);
+        mNextBtn.setEnabled(enabled);
         mMusicSeekBar.setEnabled(enabled);
     }
 

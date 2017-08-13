@@ -300,7 +300,9 @@ public class MusicListActivity extends AppCompatActivity {
         mMusicSeekBar.setProgress((int) item.playedTime);
 
         mMusicTitle.setText(item.name);
-        mImageView.setImageBitmap(item.thumb);
+        if(item.thumb != null)
+            mImageView.setImageBitmap(item.thumb);
+        else mImageView.setImageResource(R.mipmap.default_cover);
     }
 
     private MusicService.OnStateChangeListenr mStateChangeListenr = new MusicService.OnStateChangeListenr() {
