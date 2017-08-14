@@ -207,6 +207,7 @@ public class PlayMusicView extends AppCompatActivity {
             }
         }
     };
+    //按钮事件
     public void onClick(View view) {
         switch (view.getId()) {
 

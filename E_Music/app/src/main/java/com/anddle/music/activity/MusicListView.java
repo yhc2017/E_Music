@@ -269,14 +269,14 @@ public class MusicListView extends AppCompatActivity {
 
         @Override
         public void onPlay(MusicItem item) {
-//            mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
+            mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
             updatePlayingInfo(item);
             enableControlPanel(true);
         }
 
         @Override
         public void onPause(MusicItem item) {
-//            mPlayBtn.setBackgroundResource(R.mipmap.ic_play);
+            mPlayBtn.setBackgroundResource(R.mipmap.ic_play);
             enableControlPanel(true);
         }
     };
@@ -286,6 +286,7 @@ public class MusicListView extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if(mMusicService != null) {
                 mMusicService.addPlayList(mMusicList.get(position));
+
             }
         }
     };
@@ -338,4 +339,35 @@ public class MusicListView extends AppCompatActivity {
 
         }
     };
+    //按钮事件
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.play_btn: {
+                if(mMusicService != null) {
+                    if(!mMusicService.isPlaying()) {
+                        mMusicService.play();
+                    }
+                    else {
+                        mMusicService.pause();
+                    }
+                }
+            }
+            break;
+
+            case R.id.next_btn: {
+                if(mMusicService != null) {
+                    mMusicService.playNext();
+                }
+            }
+            break;
+
+            case R.id.pre_btn: {
+                if(mMusicService != null) {
+                    mMusicService.playPre();
+                }
+            }
+            break;
+        }
+    }
 }

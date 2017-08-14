@@ -235,22 +235,24 @@ public class MusicService extends Service {
         mCurrentMusicItem = mPlayList.get(0);
         playInner();
     }
-
+//
     private void addPlayListInner(MusicItem item, boolean needPlay) {
-
-        if(mPlayList.contains(item)) {
-            return;
-        }
-
+//          当播放列表存在同一首歌，就不执行播放
+//        if(mPlayList.contains(item)) {
+//            return;
+//        }
+//在播放列表添加（mPlayList是播放列表）
         mPlayList.add(0, item);
-
+//把播放列表存入数据库
         insertMusicItemToContentProvider(item);
 
         if(needPlay) {
             mCurrentMusicItem = mPlayList.get(0);
             playInner();
         }
+
     }
+
 
     private void playNextInner() {
         int currentIndex = mPlayList.indexOf(mCurrentMusicItem);
