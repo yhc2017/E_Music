@@ -41,6 +41,7 @@ public class FragmentMine extends Fragment {
 
     //引入页面资源
     public void initViews(){
+//        ScrollView scrollView= (ScrollView) view.findViewById(R.id.scrollView);
         //用户名片
 
         //使用适配器将ViewPager与Fragment绑定在一起
@@ -51,19 +52,17 @@ public class FragmentMine extends Fragment {
         fragmentTitles.add("消息");
 
         //viewpager
-        MusicCourseFragment musicCourseFragment = new MusicCourseFragment();
         MyMusicFragment myMusicFragment = new MyMusicFragment();
+        MusicCourseFragment musicCourseFragment = new MusicCourseFragment();
         NewsFragment newsFragment = new NewsFragment();
 
         List<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(musicCourseFragment);
         fragments.add(myMusicFragment);
+        fragments.add(musicCourseFragment);
         fragments.add(newsFragment);
-
 
         //使用构造方法二
         FragAdapter adapter = new FragAdapter(getChildFragmentManager(), fragments,fragmentTitles);
-
 
         viewPager = (ViewPager) view.findViewById(R.id.tab);
 //        if (viewPager != null) {
@@ -84,10 +83,10 @@ public class FragmentMine extends Fragment {
 
     }
 
-    //设置页面方法
-    private void setupViewPager(ViewPager viewPager) {
-
-    }
+//    //设置页面方法
+//    private void setupViewPager(ViewPager viewPager) {
+//
+//    }
 
     //事件处理
 
