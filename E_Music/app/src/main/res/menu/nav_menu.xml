@@ -5,23 +5,27 @@
 
         <item
             android:id="@+id/add_friends"
-            android:icon="@mipmap/ic_action_users"
+            android:icon="@mipmap/ic_action_dice1"
             android:title="添加好友" />
         <item
             android:id="@+id/send_news"
-            android:icon="@mipmap/ic_action_send"
+            android:icon="@mipmap/ic_action_dice2"
             android:title="发布动态" />
         <item
             android:id="@+id/listening"
-            android:icon="@mipmap/ic_action_music_2"
+            android:icon="@mipmap/ic_action_dice3"
             android:title="听歌识曲" />
         <item
             android:id="@+id/time_close"
-            android:icon="@mipmap/ic_action_clock"
+            android:icon="@mipmap/ic_action_dice4"
             android:title="定时关闭" />
         <item
             android:id="@+id/back_news"
-            android:icon="@mipmap/ic_action_link"
+            android:icon="@mipmap/ic_action_dice5"
             android:title="反馈" />
+        <item
+            android:id="@+id/back_0"
+            android:icon="@mipmap/ic_action_dice6"
+            android:title="退出" />
     </group>
 </menu>

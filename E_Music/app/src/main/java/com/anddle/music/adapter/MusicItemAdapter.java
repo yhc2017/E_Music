@@ -14,6 +14,15 @@ import com.anddle.music.uitl.Utils;
 
 import java.util.List;
 
+/**
+ * 项目名称：E_Music
+ * 创建人：zhou-jx
+ * 创建时间：2017/8/14 15:51
+ * 修改人：zhou-jx
+ * 修改时间：2017/8/14 15:51
+ * 备注：构建适配器 ， 简单地来说， 适配器就是 Item数组 ， 动态数组 有多少元素就生成多少个Item；
+ */
+
 public class MusicItemAdapter extends BaseAdapter {
 
     private List<MusicItem> mData;
@@ -54,6 +63,8 @@ public class MusicItemAdapter extends BaseAdapter {
 
         TextView title = (TextView) convertView.findViewById(R.id.music_title);
         title.setText(item.name);
+
+
         TextView createTime = (TextView) convertView.findViewById(R.id.music_duration);
 
         String times = Utils.convertMSecendToTime(item.duration);

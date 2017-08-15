@@ -235,7 +235,7 @@ public class MusicService extends Service {
         mCurrentMusicItem = mPlayList.get(0);
         playInner();
     }
-//
+//添加到播放列表
     private void addPlayListInner(MusicItem item, boolean needPlay) {
 //          当播放列表存在同一首歌，就不执行播放
 //        if(mPlayList.contains(item)) {
@@ -350,6 +350,7 @@ public class MusicService extends Service {
 
     //播放音乐的方法，
     private void playMusicItem(MusicItem item, boolean reload) {
+
             if(item == null) {
                 return;
             }

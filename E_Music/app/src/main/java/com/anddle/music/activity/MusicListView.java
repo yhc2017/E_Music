@@ -64,7 +64,7 @@ public class MusicListView extends AppCompatActivity {
         mMusicListView = (ListView) findViewById(R.id.music_list);
         MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
         mMusicListView.setAdapter(adapter);
-        //设置监听器器
+        //设置监听器
         mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
         mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
         mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);

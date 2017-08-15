@@ -28,5 +28,6 @@ dependencies {
     compile 'com.android.support:design:23.1.0'//toolbar 的依赖库
     compile 'com.android.support:percent:23.1.0'//百分比布局依赖库
     compile 'com.android.support:design:23.1.0'//TabLayout依赖库
+    compile 'com.github.boybeak:adapter:2.1.5@aar'//这是一个高级RecyclerView的适配器库。使用这个库，在大多数条件下不需要编写自定义适配器类。使用DelegateAdapter可以满足您所需要的大部分功能。
 //    compile 'com.de.hdodenhoof:circleimageview:2.1.0'
 }

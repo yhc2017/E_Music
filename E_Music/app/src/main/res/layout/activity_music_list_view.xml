@@ -90,7 +90,11 @@
                     android:layout_centerInParent="true"
                     android:text=""
                     android:background="@mipmap/ic_play"
-                    android:onClick="onClick"/>
+                    android:onClick="onClick"
+                    >
+
+                </Button>
+
 
                 <Button
                     android:id="@+id/pre_btn"

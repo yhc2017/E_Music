@@ -2,14 +2,17 @@ package com.anddle.music.activity;
 
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,7 +47,8 @@ public class MusicListActivity extends AppCompatActivity {
     private TextView mDurationTime;
     private SeekBar mMusicSeekBar;
     private ImageView mImageView;
-//    private MusicUpdateTask mMusicUpdateTask;
+
+    NavigationView navView;
     //导航栏
     private Toolbar toolbar;
     private ImageView barMore,barSearch, barMine, barMusic, barFriend;
@@ -60,13 +64,8 @@ public class MusicListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_music_list);
-//        mMusicList = new ArrayList<MusicItem>();
-//        mMusicListView = (ListView) findViewById(R.id.music_list);
-//        MusicItemAdapter adapter = new MusicItemAdapter(this, R.layout.music_item, mMusicList);
-//        mMusicListView.setAdapter(adapter);
-//        mMusicListView.setOnItemClickListener(mOnMusicItemClickListener);
-//        mMusicListView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-//        mMusicListView.setMultiChoiceModeListener(mMultiChoiceListener);
+
+        navView = (NavigationView) findViewById(R.id.nav_view);
 
 
         mPlayBtn = (Button) findViewById(R.id.play_btn);
@@ -79,9 +78,6 @@ public class MusicListActivity extends AppCompatActivity {
         mPlayedTime = (TextView) findViewById(R.id.played_time);
         mMusicSeekBar = (SeekBar) findViewById(R.id.seek_music);
         mMusicSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
-
-//        mMusicUpdateTask = new MusicUpdateTask();
-//        mMusicUpdateTask.execute();
 
         Intent i = new Intent(this, MusicService.class);
         startService(i);
@@ -176,6 +172,62 @@ public class MusicListActivity extends AppCompatActivity {
 
         });
 
+        //侧边栏
+        //首选   navView.setCheckedItem(R.id.add_friends);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.add_friends: {
+                        //添加好友
+                    }
+                    break;
+                    case R.id.send_news: {
+                        //发布动态
+                    }
+                    break;
+                    case R.id.listening: {
+                        //听歌识曲
+                    }
+                    break;
+                    case R.id.time_close: {
+                        //定时关闭
+                    }
+                    break;
+                    case R.id.back_news: {
+                        //反馈
+                    }
+                    break;
+                    case R.id.back_0: {
+                        new AlertDialog.Builder(MusicListActivity.this).setTitle("系统提示")//设置对话框标题
+
+                                .setMessage("是否退出！")//设置显示的内容
+
+                                .setPositiveButton("确定",new DialogInterface.OnClickListener() {//添加确定按钮
+
+                                    @Override
+
+                                    public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+//退出
+                                        Intent stopIntent = new Intent(MusicListActivity.this, MusicService.class);
+                                        stopService(stopIntent);
+                                        System.exit(0);
+                                    }
+
+                                }).setNegativeButton("返回",new DialogInterface.OnClickListener() {//添加返回按钮
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {//响应事件
+
+                            }
+                        }).show();//在按键响应事件中显示此对话框
+
+                }
+                    break;
+                }
+                return true;
+            }
+        });
 
     }
 

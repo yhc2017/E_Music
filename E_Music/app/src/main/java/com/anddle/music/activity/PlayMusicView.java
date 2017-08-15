@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -36,6 +37,7 @@ public class PlayMusicView extends AppCompatActivity {
     private TextView mDurationTime;
     private SeekBar mMusicSeekBar;
     private ImageView mImageView;
+    private Bitmap bitmap_pu;
     private MusicService.MusicServiceIBinder mMusicService;
 
     @Override
@@ -63,6 +65,10 @@ public class PlayMusicView extends AppCompatActivity {
         Intent i = new Intent(this, MusicService.class);
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
+
+        //提前
+        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.loading);
+        bitmap_pu = fastblur(bm, 100);
 
 
         BtClick();
@@ -126,7 +132,8 @@ public class PlayMusicView extends AppCompatActivity {
         }
         else {
             mImageView.setImageResource(R.mipmap.default_cover);
-
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap_pu);
+            getWindow().setBackgroundDrawable(bitmapDrawable);
         }
 
     }
