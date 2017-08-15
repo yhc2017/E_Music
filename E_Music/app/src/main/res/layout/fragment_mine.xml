@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--滚动视图-->
-<ScrollView
+<!--<ScrollView-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:scrollbarSize="10dp"-->
+    <!--android:scrollbarStyle="insideInset"-->
+    <!--android:fillViewport="true"-->
+    <!--android:soundEffectsEnabled="true"-->
+    <!--android:id="@+id/scrollView">-->
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbarSize="10dp"
-    android:scrollbarStyle="insideInset"
-    android:fillViewport="true"
-    android:scrollbars="none">
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    >
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         >
 
         <!--用户名片-->
@@ -21,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
             android:layout_height="162dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="0dp"
             android:background="#fff">
         </RelativeLayout>
         <!--<RelativeLayout-->
@@ -35,9 +46,8 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/userTabs"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/user"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:background="#ffff"
             app:tabIndicatorColor="#1993FB"
             app:tabTextColor="#000"
@@ -49,11 +59,12 @@
             android:id="@+id/tab"
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:layout_below="@+id/userTabs"
             android:background="#fff">
 
         </android.support.v4.view.ViewPager>
-    </RelativeLayout>
-</ScrollView>
+    </LinearLayout>
+<!--</ScrollView>-->
+</LinearLayout>
