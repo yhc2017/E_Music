@@ -97,7 +97,7 @@ public class MusicListView extends AppCompatActivity {
         });
     }
 
-//更新信息
+//更新音乐
     private class MusicUpdateTask extends AsyncTask<Object, MusicItem, Void> {
 
         List<MusicItem> mDataList = new ArrayList<MusicItem>();

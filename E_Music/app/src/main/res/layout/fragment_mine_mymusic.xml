@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,29 +7,28 @@
         android:layout_height="wrap_content"
         android:text="本地音乐界面"
         android:textAlignment="center"/>
-    <ListView
-        android:id="@+id/list_test"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+        <Button
+            android:id="@+id/local_music"
+            android:drawableLeft="@mipmap/ic_action_music_2"
+            android:text="local music"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/Recent_played_songs"
+            android:drawableLeft="@mipmap/ic_action_music_1"
+            android:text="Recent played songs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
-=======
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-    <!--简单播放控件占位-->
-    <!--<ImageView-->
-        <!--android:id="@+id/empty"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_alignParentBottom="true" />-->
-</RelativeLayout>
->>>>>>> 8c95a2d8a064ff88cf73de5cae20723f1d8e1489

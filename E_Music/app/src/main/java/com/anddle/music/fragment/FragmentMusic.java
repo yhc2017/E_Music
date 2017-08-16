@@ -19,11 +19,12 @@ import com.anddle.music.R;
 public class FragmentMusic extends Fragment{
 
 
+    private View view;
 
     private Button button;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragemnt_music, container, false);
+        view = inflater.inflate(R.layout.fragemnt_music, container, false);
         button = (Button) view.findViewById(R.id.music_card);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
