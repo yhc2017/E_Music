@@ -6,7 +6,7 @@ import android.os.Handler;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by wm on 2016/3/26.
+ * 传播信息
  */
 public class HandlerUtil extends Handler {
 

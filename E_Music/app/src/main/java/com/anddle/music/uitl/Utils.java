@@ -11,6 +11,10 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ *  工具 时间格式
+ *  专辑图
+ */
 public class Utils {
 
     static public String convertMSecendToTime(long time) {

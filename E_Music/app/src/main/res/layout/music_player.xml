@@ -17,16 +17,23 @@
             android:textSize="20sp"
             android:textAlignment="center"
             />
+
+
+
+
+
+
         <FrameLayout
             android:id="@+id/headerView"
             android:layout_width="match_parent"
             android:layout_height="390dp">
 
             <!--专辑封面-->
+
+
             <RelativeLayout
                 android:layout_width="387dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="43dp"
                 android:orientation="horizontal">
 
                 <!--音乐播放进度条-->
@@ -37,8 +44,7 @@
                     android:layout_marginRight="10dp"
                     android:orientation="horizontal"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="12dp">
+                    android:layout_alignParentEnd="true">
 
                     <TextView
                         android:id="@+id/music_duration_played"
@@ -68,13 +74,14 @@
                         android:textSize="10sp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/image_thumb"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="263dp"
                     android:layout_height="263dp"
-                    android:scaleType="fitCenter"
-                    android:src="@color/colorAccent"
+                    android:id="@+id/image_thumb"
+                    android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true" />
+
+
             </RelativeLayout>
         </FrameLayout>
 
@@ -85,99 +92,103 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
+        </LinearLayout>
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/playing_mode"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="57dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:src="@mipmap/play_icn_loop_prs" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="23dp">
+
+            <!--<ImageView-->
+                <!--android:id="@+id/playing_mode"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="57dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_weight="1"-->
+                <!--android:src="@mipmap/play_icn_loop_prs" />-->
 
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/playing_pre"-->
-                    <!--android:layout_width="66dp"-->
-                    <!--android:layout_height="57dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:src="@mipmap/play_btn_prev_prs" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/playing_pre"-->
+                <!--android:layout_width="66dp"-->
+                <!--android:layout_height="57dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:src="@mipmap/play_btn_prev_prs" />-->
 
-                <Button
-                    android:id="@+id/playing_mode"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@mipmap/play_icn_loop_prs"
-                    android:onClick="onClick"
-                    />
+            <Button
+                android:id="@+id/playing_mode"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/play_icn_loop_prs"
+                android:onClick="onClick"
+                />
 
-                <Button
-                    android:id="@+id/playing_pre"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@mipmap/play_btn_prev_prs"
-                    android:onClick="onClick"
-                    />
+            <Button
+                android:id="@+id/playing_pre"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/play_btn_prev_prs"
+                android:onClick="onClick"
+                />
 
-                <Button
-                    android:id="@+id/playing_play"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:elevation="10dip"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@mipmap/play_rdi_btn_play"
-                    android:onClick="onClick"
-                    />
+            <Button
+                android:id="@+id/playing_play"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:elevation="10dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/play_rdi_btn_play"
+                android:onClick="onClick"
+                />
 
-                <Button
-                    android:id="@+id/playing_next"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@mipmap/play_btn_next"
-                    android:onClick="onClick"
-                    />
+            <Button
+                android:id="@+id/playing_next"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/play_btn_next"
+                android:onClick="onClick"
+                />
 
-                <Button
-                    android:id="@+id/playing_playlist"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@mipmap/play_icn_src_prs"
-                    android:onClick="onClick"
-                    />
+            <Button
+                android:id="@+id/playing_playlist"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/play_icn_src_prs"
+                android:onClick="onClick"
+                />
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/playing_play"-->
-                    <!--android:layout_width="87dp"-->
-                    <!--android:layout_height="58dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:src="@mipmap/play_rdi_btn_play" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/playing_play"-->
+                <!--android:layout_width="87dp"-->
+                <!--android:layout_height="58dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:src="@mipmap/play_rdi_btn_play" />-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/playing_next"-->
-                    <!--android:layout_width="71dp"-->
-                    <!--android:layout_height="63dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:src="@mipmap/play_btn_next" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/playing_next"-->
+                <!--android:layout_width="71dp"-->
+                <!--android:layout_height="63dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:src="@mipmap/play_btn_next" />-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/playing_playlist"-->
-                    <!--android:layout_width="79dp"-->
-                    <!--android:layout_height="59dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:src="@mipmap/play_icn_src_prs" />-->
+            <!--<ImageView-->
+                <!--android:id="@+id/playing_playlist"-->
+                <!--android:layout_width="79dp"-->
+                <!--android:layout_height="59dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:src="@mipmap/play_icn_src_prs" />-->
 
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

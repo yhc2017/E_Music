@@ -34,22 +34,25 @@ public class MusicService extends Service {
         void onPause(MusicItem item);
     }
 
+    //定义循环发送的消息
     private final int MSG_PROGRESS_UPDATE = 0;
+    //定义处理消息的Handler
     private Handler mHandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_PROGRESS_UPDATE: {
+                    //将⾳乐的时⻓和当前播放的进度保存到MusicItem数据结构中，
                     mCurrentMusicItem.playedTime = mMusicPlayer.getCurrentPosition();
                     mCurrentMusicItem.duration = mMusicPlayer.getDuration();
-
+                    //通知监听者当前的播放进度
                     for(OnStateChangeListenr l : mListenerList) {
                         l.onPlayProgressChange(mCurrentMusicItem);
                     }
-
+                    //将当前的播放进度保存到数据库中
                     updateMusicItem(mCurrentMusicItem);
-
+                    //间隔⼀秒发送⼀次更新播放进度的消息
                     sendEmptyMessageDelayed(MSG_PROGRESS_UPDATE, 1000);
                 }
                 break;
@@ -150,6 +153,7 @@ public class MusicService extends Service {
         mMusicPlayer.release();
 
         unregisterReceiver(mIntentReceiver);
+        //停止更新
         mHandler.removeMessages(MSG_PROGRESS_UPDATE);
         mListenerList.clear();
         for(MusicItem item : mPlayList) {
@@ -259,6 +263,9 @@ public class MusicService extends Service {
         if(currentIndex < mPlayList.size() -1 ) {
 
             mCurrentMusicItem = mPlayList.get(currentIndex + 1);
+            //播放下一首，把当前播放音乐的播放时长置0并存到数据库
+            mCurrentMusicItem.playedTime = 0;
+            updateMusicItem(mCurrentMusicItem);
             playMusicItem(mCurrentMusicItem, true);
         }
     }
@@ -284,6 +291,9 @@ public class MusicService extends Service {
         if(currentIndex - 1 >= 0 ) {
 
             mCurrentMusicItem = mPlayList.get(currentIndex - 1);
+            //播放上一首，把当前播放音乐的播放时长置0并存到数据库
+            mCurrentMusicItem.playedTime = 0;
+            updateMusicItem(mCurrentMusicItem);
             playMusicItem(mCurrentMusicItem, true);
         }
     }
@@ -366,7 +376,7 @@ public class MusicService extends Service {
                 l.onPlay(item);
             }
             mPaused = false;
-
+//seekbar，移除现有的更新消息，重新启动更新
             mHandler.removeMessages(MSG_PROGRESS_UPDATE);
             mHandler.sendEmptyMessage(MSG_PROGRESS_UPDATE);
         //更新桌面小控件
@@ -377,7 +387,8 @@ public class MusicService extends Service {
 
         @Override
         public void onCompletion(MediaPlayer mp) {
-
+            //将当前播放的⾳乐记录时间重置为0，更新到数据库
+            //下次播放就可以从头开始
             mCurrentMusicItem.playedTime = 0;
             updateMusicItem(mCurrentMusicItem);
             playNextInner();

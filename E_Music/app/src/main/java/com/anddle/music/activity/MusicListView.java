@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -143,7 +142,7 @@ public class MusicListView extends AppCompatActivity {
                         data.thumb = Utils.createThumbFromUir(res, albumUri);
                     }
 
-                   Log.d(TAG, "real music found: " + path);
+//                   Log.d(TAG, "real music found: " + path);
 
                     publishProgress(data);
 

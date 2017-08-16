@@ -1,7 +1,6 @@
 package com.anddle.music.fragment.fragmentmine;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,10 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.anddle.music.R;
-import com.anddle.music.activity.MusicListView;
 import com.anddle.music.adapter.MyMusicItem;
 import com.anddle.music.adapter.MyMusicListAdapter;
 import com.anddle.music.widget.DividerItemDecoration;
@@ -27,8 +24,6 @@ import java.util.List;
 
 public class MyMusicFragment extends Fragment {
 
-//    private View view;
-//    private Button button;
 
     private View view;
     private List<MyMusicItem> myMusicList = new ArrayList<>();
@@ -48,15 +43,6 @@ public class MyMusicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_mine_mymusic, container, false);
         initMyMusicList();
-
-//        button = (Button) view.findViewById(R.id.local_music);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity() , MusicListView.class);
-//                startActivity(intent);
-//            }
-//        });
         return view;
     }
 

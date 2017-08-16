@@ -36,9 +36,6 @@ import java.util.List;
 
 public class MusicListActivity extends AppCompatActivity {
 
-//    static public String TAG = "MusicListActivity";
-//    private List<MusicItem> mMusicList;
-//    private ListView mMusicListView;
     private Button mPlayBtn;
     private Button mPreBtn;
     private Button mNextBtn;
@@ -88,6 +85,7 @@ public class MusicListActivity extends AppCompatActivity {
         Button_Click();
         settoolbar();
 
+        //3秒移开导图
         HandlerUtil.getInstance(this).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -172,7 +170,7 @@ public class MusicListActivity extends AppCompatActivity {
 
         });
 
-        //侧边栏
+        //侧边栏事件
         //首选   navView.setCheckedItem(R.id.add_friends);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

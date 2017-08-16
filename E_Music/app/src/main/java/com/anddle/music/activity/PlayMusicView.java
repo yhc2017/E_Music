@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
@@ -70,6 +71,12 @@ public class PlayMusicView extends AppCompatActivity {
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.loading);
         bitmap_pu = fastblur(bm, 100);
 
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
 
         BtClick();
 
@@ -105,6 +112,7 @@ public class PlayMusicView extends AppCompatActivity {
         else {
             builder.setMessage(getString(R.string.no_song));
         }
+
 
         builder.setCancelable(true);
         builder.create().show();

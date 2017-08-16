@@ -10,7 +10,7 @@ import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 
 import com.anddle.music.service.MusicService;
-
+//桌面控件
 public class MusicAppWidget extends AppWidgetProvider {
 
     private static int [] sAppWidgetIds;

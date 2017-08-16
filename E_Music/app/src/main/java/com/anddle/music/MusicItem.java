@@ -6,6 +6,7 @@ import android.net.Uri;
 public class MusicItem {
 
     public String name;
+    public String name_player;
     public Uri songUri;
     public Uri albumUri;
     public Bitmap thumb;
