@@ -55,6 +55,7 @@
             android:enabled="true"
             android:exported="true" />
 
+        <activity android:name=".activity.BaseActivity"></activity>
     </application>
 
 </manifest>

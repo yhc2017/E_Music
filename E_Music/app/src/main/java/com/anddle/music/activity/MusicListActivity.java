@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +33,7 @@ import com.anddle.music.widget.SplashScreen;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicListActivity extends AppCompatActivity {
+public class MusicListActivity extends BaseActivity {
 
     private Button mPlayBtn;
     private Button mPreBtn;

@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MusicListView extends AppCompatActivity {
+public class MusicListView extends BaseActivity {
 
     static public String TAG = "MusicListView";
     private List<MusicItem> mMusicList;
