@@ -41,6 +41,7 @@ public class PlayMusicView extends AppCompatActivity {
     private Bitmap bitmap_pu;
     private MusicService.MusicServiceIBinder mMusicService;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -134,7 +135,8 @@ public class PlayMusicView extends AppCompatActivity {
         if (item.thumb != null) {
             mImageView.setImageBitmap(item.thumb);
             //传入专辑图片到fastblur方法。
-            Bitmap bitmap = fastblur(item.thumb, 100);
+            Bitmap bitmap = fastblur(item.thumb, 200);
+
             BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
             getWindow().setBackgroundDrawable(bitmapDrawable);
         }

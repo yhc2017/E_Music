@@ -151,6 +151,7 @@ public class MusicListActivity extends BaseActivity {
 
     //按钮事件
     public void Button_Click(){
+        //点专辑图进入播放界面
         mImageView = (ImageView) findViewById(R.id.image_thumb);
         mImageView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -160,6 +161,7 @@ public class MusicListActivity extends BaseActivity {
             }
 
         });
+
         ImageView bar_more = (ImageView) findViewById(R.id.bar_more);
         bar_more.setOnClickListener(new View.OnClickListener(){
             @Override

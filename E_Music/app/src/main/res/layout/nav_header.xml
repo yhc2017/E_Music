@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:padding="10dp"
+    android:background="#000"
     >
     <Button
         android:id="@+id/user_pic"
@@ -12,11 +13,11 @@
 
     <TextView
         android:id="@+id/mail"
+        android:textColor="#fff"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1104135769@qq.com"
-        android:textColor="#000"
         android:textSize="14sp"/>
 
     <TextView
@@ -25,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/mail"
         android:text="ZJX"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="14sp"/>
 
 </RelativeLayout>

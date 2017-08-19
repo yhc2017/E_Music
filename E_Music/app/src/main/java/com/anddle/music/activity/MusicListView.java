@@ -129,13 +129,15 @@ public class MusicListView extends BaseActivity {
                     String id = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
                     Uri musicUri = Uri.withAppendedPath(uri, id);
 
-                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)) +"     歌手："+ cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+                    String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+                    String player = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+
                     long duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
 
 
                     int albumId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM_ID));
                     Uri albumUri = ContentUris.withAppendedId(Uri.parse("content://media/external/audio/albumart"), albumId);
-                    MusicItem data = new MusicItem(musicUri, albumUri, name, duration, 0);
+                    MusicItem data = new MusicItem(musicUri, albumUri, name, player, duration, 0);
                     if (uri != null) {
                         ContentResolver res = getContentResolver();
                         data.thumb = Utils.createThumbFromUir(res, albumUri);

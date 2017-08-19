@@ -344,10 +344,11 @@ public class MusicService extends Service {
             String songUri = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.SONG_URI));
             String albumUri = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.ALBUM_URI));
             String name = cursor.getString(cursor.getColumnIndex(DBHelper.NAME));
+            String player = cursor.getString(cursor.getColumnIndex(DBHelper.PLAY));
             long playedTime = cursor.getLong(cursor.getColumnIndexOrThrow(DBHelper.LAST_PLAY_TIME));
             long duration = cursor.getLong(cursor.getColumnIndexOrThrow(DBHelper.DURATION));
 
-            MusicItem item = new MusicItem(Uri.parse(songUri), Uri.parse(albumUri), name, duration, playedTime/*, isLastPlaying*/);
+            MusicItem item = new MusicItem(Uri.parse(songUri), Uri.parse(albumUri), name, player, duration, playedTime/*, isLastPlaying*/);
             mPlayList.add(item);
         }
 
@@ -399,6 +400,7 @@ public class MusicService extends Service {
 
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.NAME, item.name);
+        cv.put(DBHelper.PLAY, item.player);
         cv.put(DBHelper.DURATION, item.duration);
         cv.put(DBHelper.LAST_PLAY_TIME, item.playedTime);
         cv.put(DBHelper.SONG_URI, item.songUri.toString());

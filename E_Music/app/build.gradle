@@ -31,4 +31,5 @@ dependencies {
     compile 'com.github.boybeak:adapter:2.1.5@aar'//这是一个高级RecyclerView的适配器库。使用这个库，在大多数条件下不需要编写自定义适配器类。使用DelegateAdapter可以满足您所需要的大部分功能。
     compile 'me.wcy:lrcview:1.4.2'//Android lyric view library,一个前辈所作
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.bilibili:magicasakura:0.1.6@aar'
 }

@@ -8,11 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "playlist.db";
-    private final static int DB_VERSION = 16;
+    private final static int DB_VERSION = 17;
     public final static String PLAYLIST_TABLE_NAME = "playlist_table";
 
     public final static String ID = "id";
     public final static String NAME = "name";
+    public final static String PLAY = "play";
     public final static String LAST_PLAY_TIME = "last_play_time";
     public final static String SONG_URI = "song_uri";
     public final static String ALBUM_URI = "album_uri";
@@ -29,6 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 + "("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NAME +" VARCHAR(256),"
+                + PLAY +" VARCHAR(256),"
                 + LAST_PLAY_TIME +" LONG,"
                 + SONG_URI +" VARCHAR(128),"
                 + ALBUM_URI +" VARCHAR(128),"

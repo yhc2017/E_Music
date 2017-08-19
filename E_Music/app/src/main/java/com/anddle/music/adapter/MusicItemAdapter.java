@@ -64,6 +64,8 @@ public class MusicItemAdapter extends BaseAdapter {
         TextView title = (TextView) convertView.findViewById(R.id.music_title);
         title.setText(item.name);
 
+        TextView player = (TextView) convertView.findViewById(R.id.music_player);
+        player.setText(item.player);
 
         TextView createTime = (TextView) convertView.findViewById(R.id.music_duration);
 

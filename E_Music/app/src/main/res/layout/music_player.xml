@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#00000000" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/music_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text=""
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            />
+
 
 
 
@@ -86,13 +78,26 @@
         </FrameLayout>
 
         <!--按钮控件-播放、上一首下一首-->
-        <LinearLayout
-            android:id="@+id/bottom_control"
+        <!--<LinearLayout-->
+            <!--android:id="@+id/bottom_control"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true">-->
+
+        <!--</LinearLayout>-->
+
+        <TextView
+            android:id="@+id/music_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentTop="true"
+            android:text="标题"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            />
 
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,21 +106,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="23dp">
 
-            <!--<ImageView-->
-                <!--android:id="@+id/playing_mode"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="57dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:layout_weight="1"-->
-                <!--android:src="@mipmap/play_icn_loop_prs" />-->
 
-
-            <!--<ImageView-->
-                <!--android:id="@+id/playing_pre"-->
-                <!--android:layout_width="66dp"-->
-                <!--android:layout_height="57dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@mipmap/play_btn_prev_prs" />-->
 
             <Button
                 android:id="@+id/playing_mode"
@@ -168,26 +159,6 @@
                 android:onClick="onClick"
                 />
 
-            <!--<ImageView-->
-                <!--android:id="@+id/playing_play"-->
-                <!--android:layout_width="87dp"-->
-                <!--android:layout_height="58dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@mipmap/play_rdi_btn_play" />-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/playing_next"-->
-                <!--android:layout_width="71dp"-->
-                <!--android:layout_height="63dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@mipmap/play_btn_next" />-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/playing_playlist"-->
-                <!--android:layout_width="79dp"-->
-                <!--android:layout_height="59dp"-->
-                <!--android:layout_gravity="center_vertical"-->
-                <!--android:src="@mipmap/play_icn_src_prs" />-->
 
         </LinearLayout>
     </RelativeLayout>
