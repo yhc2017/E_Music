@@ -5,4 +5,8 @@
     <color name="colorAccent">#0069ac</color>
     <color name="colorContract">#09C</color>
     <color name="colorHighlight">#1993FB</color>
+
+    <!--字体颜色-->
+    <color name="primaryfont">#000</color>
+    <color name="smallfont">#c6c6c6</color>
 </resources>

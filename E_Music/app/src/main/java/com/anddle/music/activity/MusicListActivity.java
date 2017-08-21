@@ -122,6 +122,7 @@ public class MusicListActivity extends BaseActivity {
 
         //
         final ViewPager viewPager = (ViewPager) findViewById(R.id.main_viewpager);
+        viewPager.setOffscreenPageLimit(2);//设置页面左右两边加载最大页数
         viewPager.setAdapter(adapter);
 
         ImageView bar_music = (ImageView) findViewById(R.id.bar_music);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- recyclerview item 水波纹效果 -->
+    <attr name="selectableItemBackground" format="reference" />
+</resources>

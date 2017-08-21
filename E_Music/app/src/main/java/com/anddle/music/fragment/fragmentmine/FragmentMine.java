@@ -67,7 +67,7 @@ public class FragmentMine extends Fragment {
         viewPager = (ViewPager) view.findViewById(R.id.tab);
 //        if (viewPager != null) {
 //            setupViewPager(viewPager);
-//            viewPager.setOffscreenPageLimit(2);//设置页面左右两边加载最大页数
+            viewPager.setOffscreenPageLimit(2);//设置页面左右两边加载最大页数
 //        }
         viewPager.setAdapter(adapter);
 
