@@ -50,11 +50,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".service.PlayService"
-            android:enabled="true"
-            android:exported="true" />
-
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.PlaysActivity"></activity>
     </application>

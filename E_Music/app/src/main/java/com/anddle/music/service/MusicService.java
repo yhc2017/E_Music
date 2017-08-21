@@ -60,6 +60,20 @@ public class MusicService extends Service {
         }
     };
 
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mMusicPlayer.isPlaying()) {
+                long time = mMusicPlayer.getCurrentPosition();
+            }
+
+            handler.postDelayed(this, 100);
+        }
+    };
+
+
+
     public static final String ACTION_PLAY_MUSIC_PRE = "com.anddle.anddlemusic.playpre";
     public static final String ACTION_PLAY_MUSIC_NEXT = "com.anddle.anddlemusic.playnext";
     public static final String ACTION_PLAY_MUSIC_TOGGLE = "com.anddle.anddlemusic.playtoggle";
@@ -302,6 +316,7 @@ public class MusicService extends Service {
 
         mPaused = true;
         mMusicPlayer.pause();
+        handler.removeCallbacks(runnable);
         for(OnStateChangeListenr l : mListenerList) {
             l.onPause(mCurrentMusicItem);
         }
@@ -371,6 +386,8 @@ public class MusicService extends Service {
             }
         //开始播放
             mMusicPlayer.start();
+            handler.post(runnable);
+
         //进度条
             seekToInner((int)item.playedTime);
             for(OnStateChangeListenr l : mListenerList) {

@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+//内容提供器
+
 public class PlayListContentProvider extends ContentProvider {
 
     private static final String SCHEME = "content://";
@@ -25,7 +27,7 @@ public class PlayListContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-
+        //创建数据库和升级
         mDBHelper = new DBHelper(getContext());
 
         return true;
@@ -42,6 +44,7 @@ public class PlayListContentProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
 
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        //query方法第一个参数url为表名，projection确定查询的列，selection和selectionArgs参数约束查询那些行，sortOrder参数对结果进行排序
         Cursor cursor = db.query(DBHelper.PLAYLIST_TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
 
         return cursor;

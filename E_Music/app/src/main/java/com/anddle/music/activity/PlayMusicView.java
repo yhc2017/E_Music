@@ -24,8 +24,12 @@ import com.anddle.music.R;
 import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import me.wcy.lrcview.LrcView;
 
 public class PlayMusicView extends AppCompatActivity {
 
@@ -41,6 +45,7 @@ public class PlayMusicView extends AppCompatActivity {
     private Bitmap bitmap_pu;
     private MusicService.MusicServiceIBinder mMusicService;
 
+    private static LrcView lrcSmall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,11 @@ public class PlayMusicView extends AppCompatActivity {
         setContentView(R.layout.music_player);
         //全局显示-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //歌词
+        lrcSmall = (LrcView) findViewById(R.id.lrc_small);
+        lrcSmall.loadLrc(getLrcText("cbg.lrc"));
+
 
         mPlayBtn = (Button) findViewById(R.id.playing_play);
         mPreBtn = (Button) findViewById(R.id.playing_pre);
@@ -81,6 +91,21 @@ public class PlayMusicView extends AppCompatActivity {
 
         BtClick();
 
+    }
+
+    private String getLrcText(String fileName) {
+        String lrcText = null;
+        try {
+            InputStream is = getAssets().open(fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            lrcText = new String(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lrcText;
     }
 
     //按钮事件
@@ -255,6 +280,7 @@ public class PlayMusicView extends AppCompatActivity {
             break;
         }
     }
+
 
 
 
@@ -469,4 +495,6 @@ public class PlayMusicView extends AppCompatActivity {
 
         return (bitmap);
     }
+
+
 }
