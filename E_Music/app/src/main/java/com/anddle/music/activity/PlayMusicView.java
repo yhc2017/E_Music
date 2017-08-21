@@ -119,6 +119,11 @@ public class PlayMusicView extends AppCompatActivity {
 
 
     }
+
+    public static void Lrc(long t){
+        lrcSmall.updateTime(t);
+    }
+
     //弹出播放列表(保存在数据库中的歌)
     private void showPlayList() {
 

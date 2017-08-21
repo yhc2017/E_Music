@@ -19,6 +19,7 @@ import com.anddle.music.DBHelper;
 import com.anddle.music.MusicAppWidget;
 import com.anddle.music.MusicItem;
 import com.anddle.music.PlayListContentProvider;
+import com.anddle.music.activity.PlayMusicView;
 import com.anddle.music.uitl.Utils;
 
 import java.io.IOException;
@@ -66,6 +67,7 @@ public class MusicService extends Service {
         public void run() {
             if (mMusicPlayer.isPlaying()) {
                 long time = mMusicPlayer.getCurrentPosition();
+                PlayMusicView.Lrc(time);
             }
 
             handler.postDelayed(this, 100);
