@@ -261,7 +261,7 @@ public class PlayMusicView extends AppCompatActivity {
             case R.id.playing_play: {
                 if(mMusicService != null) {
                     if(!mMusicService.isPlaying()) {
-                        mMusicService.play();
+                        mMusicService.play_view();
                     }
                     else {
                         mMusicService.pause();

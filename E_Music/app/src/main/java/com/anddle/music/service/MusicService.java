@@ -193,6 +193,11 @@ public class MusicService extends Service {
         //播放
         public void play() {
             playInner();
+
+        }
+        public void play_view() {
+            playInner();
+            handler.post(runnable);
         }
 
         //下一首
@@ -258,9 +263,10 @@ public class MusicService extends Service {
 //添加到播放列表
     private void addPlayListInner(MusicItem item, boolean needPlay) {
 //          当播放列表存在同一首歌，就不执行播放
-//        if(mPlayList.contains(item)) {
-//            return;
-//        }
+        if(mPlayList.contains(item)) {
+            mMusicPlayer.start();
+            return;
+        }
 //在播放列表添加（mPlayList是播放列表）
         mPlayList.add(0, item);
 //把播放列表存入数据库
@@ -287,6 +293,7 @@ public class MusicService extends Service {
     }
 
     private void playInner() {
+
         //mCurrentMusicItem == null && mPlayList.size() > 0，选第一首歌播放
         if(mCurrentMusicItem == null && mPlayList.size() > 0) {
             mCurrentMusicItem = mPlayList.get(0);
@@ -303,9 +310,10 @@ public class MusicService extends Service {
     }
 
     private void playPreInner() {
-        int currentIndex = mPlayList.indexOf(mCurrentMusicItem);
-        if(currentIndex - 1 >= 0 ) {
 
+        int currentIndex = mPlayList.indexOf(mCurrentMusicItem);
+
+        if(currentIndex - 1 >= 0 ) {
             mCurrentMusicItem = mPlayList.get(currentIndex - 1);
             //播放上一首，把当前播放音乐的播放时长置0并存到数据库
             mCurrentMusicItem.playedTime = 0;
@@ -319,6 +327,7 @@ public class MusicService extends Service {
         mPaused = true;
         mMusicPlayer.pause();
         handler.removeCallbacks(runnable);
+
         for(OnStateChangeListenr l : mListenerList) {
             l.onPause(mCurrentMusicItem);
         }
@@ -387,8 +396,10 @@ public class MusicService extends Service {
                 prepareToPlay(item);
             }
         //开始播放
+
             mMusicPlayer.start();
-            handler.post(runnable);
+
+
 
         //进度条
             seekToInner((int)item.playedTime);

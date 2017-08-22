@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "playlist.db";//数据库名
-    private final static int DB_VERSION = 17;
+    private final static int DB_VERSION = 18;
 
     public final static String PLAYLIST_TABLE_NAME = "playlist_table";
 
