@@ -8,9 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.anddle.music.R;
 import com.anddle.music.adapter.FragAdapter;
+import com.anddle.music.service.Ceshi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +46,12 @@ public class FragmentMine extends Fragment {
     public void initViews(){
 //        ScrollView scrollView= (ScrollView) view.findViewById(R.id.scrollView);
         //用户名片
+//        ImageView userpic = (ImageView) view.findViewById(R.id.user_photo);
+//        userpic.setImageResource();
+//        TextView textView = (TextView) view.findViewById(R.id.user_id);
+//        TextView textView1 = (TextView) view.findViewById(R.id.user_name);
+//        Ceshi ceshi = new Ceshi();
+//        ceshi.update(textView,textView1);
 
         //使用适配器将ViewPager与Fragment绑定在一起
         //title
@@ -76,23 +85,6 @@ public class FragmentMine extends Fragment {
         userTabs.setTabMode(TabLayout.MODE_FIXED);
         //将TabLayout与ViewPager绑定在一起
         userTabs.setupWithViewPager(viewPager);//可能有坑
-
-
-
-
-
     }
-
-//    //设置页面方法
-//    private void setupViewPager(ViewPager viewPager) {
-//
-//    }
-
-    //事件处理
-
-
-
-
-
 
 }

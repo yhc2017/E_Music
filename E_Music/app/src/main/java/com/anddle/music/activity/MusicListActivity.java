@@ -5,10 +5,12 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -46,9 +49,9 @@ public class MusicListActivity extends BaseActivity {
 
     NavigationView navView;
     //导航栏
-    private Toolbar toolbar;
+    private Toolbar mToolbar;
     private ImageView barMore,barSearch, barMine, barMusic, barFriend;
-
+    private android.widget.PopupWindow mPopupWindow;
     private SplashScreen splashScreen;
 
 
@@ -58,11 +61,9 @@ public class MusicListActivity extends BaseActivity {
         splashScreen.show(R.drawable.loading, SplashScreen.SLIDE_LEFT);//一进入APP先是一幅图片（引导图片）
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_music_list);
 
         navView = (NavigationView) findViewById(R.id.nav_view);
-
 
         mPlayBtn = (Button) findViewById(R.id.play_btn);
         mPreBtn = (Button) findViewById(R.id.pre_btn);
@@ -96,18 +97,13 @@ public class MusicListActivity extends BaseActivity {
     /*设置bar*/
     public void settoolbar() {
         //实例化控件
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
 //        setSupportActionBar(toolbar);
         barSearch = (ImageView) findViewById(R.id.bar_search);
         barMine = (ImageView) findViewById(R.id.bar_mine);
         barMusic = (ImageView) findViewById(R.id.bar_music);
         barFriend = (ImageView) findViewById(R.id.bar_friends);
         barMore = (ImageView) findViewById(R.id.bar_more);
-
-    }
-
-    /*设置页面*/
-    public void setViewPager() {
 
         //实例化对象
         FragmentMine fragmentMine = new FragmentMine();
@@ -125,29 +121,35 @@ public class MusicListActivity extends BaseActivity {
         viewPager.setOffscreenPageLimit(2);//设置页面左右两边加载最大页数
         viewPager.setAdapter(adapter);
 
-        ImageView bar_music = (ImageView) findViewById(R.id.bar_music);
-        bar_music.setOnClickListener(new View.OnClickListener(){
+        barMusic = (ImageView) findViewById(R.id.bar_music);
+        barMusic.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 viewPager.setCurrentItem(1);
             }
         });
 
-        ImageView bar_mine = (ImageView) findViewById(R.id.bar_mine);
-        bar_mine.setOnClickListener(new View.OnClickListener(){
+        barMine = (ImageView) findViewById(R.id.bar_mine);
+        barMine.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 viewPager.setCurrentItem(0);
             }
         });
 
-        ImageView bar_friends = (ImageView) findViewById(R.id.bar_friends);
-        bar_friends.setOnClickListener(new View.OnClickListener(){
+        barFriend = (ImageView) findViewById(R.id.bar_friends);
+        barFriend.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 viewPager.setCurrentItem(2);
             }
         });
+    }
+
+
+    /*设置页面*/
+    public void setViewPager() {
+
     }
 
     //按钮事件

@@ -51,10 +51,32 @@
             android:textSize="20sp"
             android:textColor="#fff"
             android:text="Login"/>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_nullbg"
+                android:text="注册"/>
+            <View
+                android:layout_width="3px"
+                android:layout_height="fill_parent"
+                android:background="?android:attr/listDivider"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_nullbg"
+                android:text="游客"/>
+        </LinearLayout>
+
+
     </LinearLayout>
         <TextView
             android:id="@+id/tip"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,9 +99,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/QQ"
+                android:src="@drawable/qq"
                 android:background="@drawable/login_qq"/>/>
         </LinearLayout>
-
 
 </LinearLayout>

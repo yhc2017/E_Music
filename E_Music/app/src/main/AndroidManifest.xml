@@ -52,6 +52,7 @@
 
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.PlaysActivity"></activity>
+        <activity android:name=".activity.RegisterActivity"></activity>
     </application>
 
 </manifest>
