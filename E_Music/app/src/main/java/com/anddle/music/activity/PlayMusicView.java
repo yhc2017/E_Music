@@ -89,6 +89,8 @@ public class PlayMusicView extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
+
+
         BtClick();
 
     }
@@ -120,8 +122,13 @@ public class PlayMusicView extends AppCompatActivity {
 
     }
 
-    public static void Lrc(long t){
+    public static void Lrc_update(long t){
         lrcSmall.updateTime(t);
+        System.out.println(t);
+    }
+    public static void Lrc_onDrag(long t){
+        lrcSmall.onDrag(t);
+        System.out.println(t);
     }
 
     //弹出播放列表(保存在数据库中的歌)
@@ -143,6 +150,8 @@ public class PlayMusicView extends AppCompatActivity {
         else {
             builder.setMessage(getString(R.string.no_song));
         }
+
+
 
 
         builder.setCancelable(true);
@@ -226,6 +235,7 @@ public class PlayMusicView extends AppCompatActivity {
             }
             if(mMusicService.isPlaying()) {
                 mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
+                mMusicService.play_view();
             }
         }
 

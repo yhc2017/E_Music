@@ -67,7 +67,7 @@ public class MusicService extends Service {
         public void run() {
             if (mMusicPlayer.isPlaying()) {
                 long time = mMusicPlayer.getCurrentPosition();
-                PlayMusicView.Lrc(time);
+                PlayMusicView.Lrc_update(time);
             }
 
             handler.postDelayed(this, 100);
@@ -177,7 +177,7 @@ public class MusicService extends Service {
                 item.thumb.recycle();
             }
         }
-
+        handler.removeCallbacks(runnable);
         mPlayList.clear();
     }
 
@@ -215,11 +215,13 @@ public class MusicService extends Service {
 
         public void seekTo(int pos) {
             seekToInner(pos);
+            //拉动滚动条，改变歌词
+            long time = mMusicPlayer.getCurrentPosition();
+            PlayMusicView.Lrc_onDrag(time);
         }
 
         public void registerOnStateChangeListener(OnStateChangeListenr l) {
             registerOnStateChangeListenerInner(l);
-
         }
 
         public void unregisterOnStateChangeListener(OnStateChangeListenr l) {

@@ -5,12 +5,10 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +16,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -41,6 +38,9 @@ public class MusicListActivity extends BaseActivity {
     private Button mPlayBtn;
     private Button mPreBtn;
     private Button mNextBtn;
+
+    private Button user;
+
     private TextView mMusicTitle;
     private TextView mPlayedTime;
     private TextView mDurationTime;
@@ -68,6 +68,7 @@ public class MusicListActivity extends BaseActivity {
         mPlayBtn = (Button) findViewById(R.id.play_btn);
         mPreBtn = (Button) findViewById(R.id.pre_btn);
         mNextBtn = (Button) findViewById(R.id.next_btn);
+        user = (Button) findViewById(R.id.user_pic);
 
         mMusicTitle = (TextView) findViewById(R.id.music_title);
 
@@ -175,6 +176,13 @@ public class MusicListActivity extends BaseActivity {
         });
 
         //侧边栏事件
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MusicListActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         //首选   navView.setCheckedItem(R.id.add_friends);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
