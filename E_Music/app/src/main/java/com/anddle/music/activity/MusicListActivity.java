@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anddle.music.MusicItem;
 import com.anddle.music.R;
@@ -29,9 +31,21 @@ import com.anddle.music.handler.HandlerUtil;
 import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 import com.anddle.music.widget.SplashScreen;
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MusicListActivity extends BaseActivity {
 
@@ -53,6 +67,11 @@ public class MusicListActivity extends BaseActivity {
     private ImageView barMore,barSearch, barMine, barMusic, barFriend;
     private android.widget.PopupWindow mPopupWindow;
     private SplashScreen splashScreen;
+
+    //sanil*
+//    public static ImageView uphotoIV, usexIV, ucodeIV;
+//    public static TextView unameTV, uidTV;
+    //sanil*
 
 
     @Override
@@ -77,6 +96,66 @@ public class MusicListActivity extends BaseActivity {
         mMusicSeekBar = (SeekBar) findViewById(R.id.seek_music);
         mMusicSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
 
+        //snail*
+//        uphotoIV = (ImageView) findViewById(R.id.user_photo);
+//        usexIV = (ImageView) findViewById(R.id.user_sex_pic);
+//        ucodeIV = (ImageView) findViewById(R.id.user_code);
+//        unameTV = (TextView) findViewById(R.id.user_name);
+//        uidTV = (TextView) findViewById(R.id.user_id);
+        sendRequestWithOkHttp("http://117.48.203.145/queryUserInfo.php", new okhttp3.Callback(){
+            /**
+             * Called when the request could not be executed due to cancellation, a connectivity problem or
+             * timeout. Because networks can fail during an exchange, it is possible that the remote server
+             * accepted the request before the failure.
+             *
+             * @param call
+             * @param e
+             */
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                Log.d("MusicListActivity","出现异常");
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MusicListActivity.this, "获取信息失败", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+
+            /**
+             * Called when the HTTP response was successfully returned by the remote server. The callback may
+             * proceed to read the response body with {@link Response#body}. The response is still live until
+             * consume the response body on another thread.
+             * <p>
+             * <p>Note that transport-layer success (receiving a HTTP response code, headers and body) does
+             * not necessarily indicate application-layer success: {@code response} may still indicate an
+             * unhappy HTTP response code like 404 or 500.
+             *
+             * @param call
+             * @param response
+             */
+            @Override
+            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                final String responseData = response.body().string(); //得到返回具体内容
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            parseJSONWithGson(responseData);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+        });
+        //snail*
+
+
         Intent i = new Intent(this, MusicService.class);
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
@@ -93,7 +172,71 @@ public class MusicListActivity extends BaseActivity {
                 splashScreen.removeSplashScreen();
             }
         }, 3000);
+
+        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
+
     }
+
+
+    //snail*
+    private void sendRequestWithOkHttp(String address, okhttp3.Callback callback) {
+
+//        Intent intent = getIntent();
+//        String data = intent.getStringExtra("userinfo");
+        String data = "111";
+        Toast.makeText(MusicListActivity.this, data, Toast.LENGTH_SHORT).show();
+
+
+        //*******
+        OkHttpClient client = new OkHttpClient(); //创建 OkHttpClient实例
+        RequestBody requestBody = new FormBody.Builder().add("userid", data).build();
+        Request request = new Request.Builder().url("http://117.48.203.145/queryUserInfo.php").post(requestBody).build();
+        client.newCall(request).enqueue(callback);
+        //*******
+
+
+    }
+    private void parseJSONWithGson(String jsonData) throws JSONException {
+
+        Gson gson = new Gson();
+        List<App> appList = gson.fromJson(jsonData, new TypeToken<List<App>>()
+        {}.getType());
+        for (App app : appList) {
+
+            final String url1 = app.getImg();
+            final String url2 = app.getSex();
+            final String url3 = app.getErweima();
+            final String necheng = app.getName();
+            final  String wechatID = app.getWechat();
+
+            Log.d("MusicListActivity", "img" + url1);
+            Log.d("MusicListActivity", "sex" + url2);
+            Log.d("MusicListActivity", "erweima" + url3);
+            Log.d("MusicListActivity", "necheng" + necheng);
+            Log.d("MusicListActivity", "userid" + wechatID);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    FragmentMine.unameTV.setText(necheng);
+                    FragmentMine.uidTV.setText(wechatID);
+
+                    Glide.with(MusicListActivity.this).load(url1).into(FragmentMine.uphotoIV);
+                    Glide.with(MusicListActivity.this).load(url2).into(FragmentMine.usexIV);
+                    Glide.with(MusicListActivity.this).load(url3).into(FragmentMine.ucodeIV);
+
+
+                }
+            });
+
+
+        }
+
+    }
+    //snail*
+
+
 
     /*设置bar*/
     public void settoolbar() {

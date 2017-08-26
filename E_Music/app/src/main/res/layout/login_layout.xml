@@ -32,7 +32,7 @@
             android:layout_height="52dp"
             android:textSize="20sp"
             android:drawableLeft="@drawable/login_user"
-            android:text="请输入手机号/账号ID"
+            android:hint="请输入手机号/账号ID"
             android:background="@drawable/edittext_bg"/>
         <EditText
             android:layout_width="300dp"
@@ -40,7 +40,7 @@
             android:textSize="20sp"
             android:layout_marginTop="15dp"
             android:drawableLeft="@drawable/login_password"
-            android:text="  Password"
+            android:hint="  Password"
             android:background="@drawable/edittext_bg"/>
         <Button
             android:layout_marginTop="15dp"

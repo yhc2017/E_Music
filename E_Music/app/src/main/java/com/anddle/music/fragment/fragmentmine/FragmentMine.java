@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.anddle.music.R;
 import com.anddle.music.adapter.FragAdapter;
-import com.anddle.music.service.Ceshi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +28,11 @@ public class FragmentMine extends Fragment {
     private RecyclerView recyclerView;
     private TabLayout userTabs;
     private ViewPager viewPager;
+
+    //snail*
+     public static ImageView uphotoIV, usexIV, ucodeIV;
+     public static TextView unameTV, uidTV;
+    //snail*
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +59,17 @@ public class FragmentMine extends Fragment {
 
         //使用适配器将ViewPager与Fragment绑定在一起
         //title
+
+        //snail*
+        uphotoIV = (ImageView) view.findViewById(R.id.user_photo);
+        usexIV = (ImageView) view.findViewById(R.id.user_sex_pic);
+        ucodeIV = (ImageView) view.findViewById(R.id.user_code);
+        unameTV = (TextView) view.findViewById(R.id.user_name);
+        uidTV = (TextView) view.findViewById(R.id.user_id);
+        //snail*
+
+
+
         List<String> fragmentTitles = new ArrayList<>();
         fragmentTitles.add("我的音乐");
         fragmentTitles.add("音乐历程");

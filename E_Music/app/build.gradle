@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
     compileSdkVersion 23
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.anddle.music"
@@ -10,6 +12,9 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        //snail*
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //snail*
     }
     buildTypes {
         release {
@@ -21,6 +26,15 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    //snail*
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+//    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    compile 'com.google.code.gson:gson:2.7'
+    //snail*
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:support-v4:23.1.0'
