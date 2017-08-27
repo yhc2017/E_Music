@@ -12,9 +12,4 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-
-
-    <!--注册页面的字-->
-    <!--<string name="action_settings">Settings</string>-->
 </resources>
