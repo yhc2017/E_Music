@@ -12,6 +12,27 @@ public class App {
     private String sex;
     private String erweima;
 
+    //snail**
+    private String userid;
+    private String pwd;
+
+    public String getuserid() {
+        return userid;
+    }
+
+    public void setuserid(String name) {
+        this.userid = userid;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+    //snail**
+
     public String getName() {
         return name;
     }

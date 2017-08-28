@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.NavigationView;
@@ -47,6 +48,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.anddle.music.fragment.fragmentmine.FragmentMine.uphotoIV;
+
 public class MusicListActivity extends BaseActivity {
 
     private Button mPlayBtn;
@@ -70,6 +73,11 @@ public class MusicListActivity extends BaseActivity {
 //    public static TextView unameTV, uidTV;
     //sanil*
 
+    //snail**1
+//    public SharedPreferences pref;
+//    public static SharedPreferences.Editor editor;
+//    public static String returnedData;
+    //snail**1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +100,29 @@ public class MusicListActivity extends BaseActivity {
         mMusicSeekBar = (SeekBar) findViewById(R.id.seek_music);
         mMusicSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
 
+        Intent i = new Intent(this, MusicService.class);
+        startService(i);
+        bindService(i, mServiceConnection, BIND_AUTO_CREATE);
+
+        setViewPager();
+        Button_Click();
+        settoolbar();
+
+        //3秒移开导图
+        HandlerUtil.getInstance(this).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                splashScreen.removeSplashScreen();
+            }
+        }, 3000);
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         //snail*
-//        uphotoIV = (ImageView) findViewById(R.id.user_photo);
-//        usexIV = (ImageView) findViewById(R.id.user_sex_pic);
-//        ucodeIV = (ImageView) findViewById(R.id.user_code);
-//        unameTV = (TextView) findViewById(R.id.user_name);
-//        uidTV = (TextView) findViewById(R.id.user_id);
         sendRequestWithOkHttp("http://117.48.203.145/queryUserInfo.php", new okhttp3.Callback(){
             /**
              * Called when the request could not be executed due to cancellation, a connectivity problem or
@@ -115,7 +140,6 @@ public class MusicListActivity extends BaseActivity {
                     @Override
                     public void run() {
                         Toast.makeText(MusicListActivity.this, "获取信息失败", Toast.LENGTH_SHORT).show();
-
                     }
                 });
             }
@@ -151,35 +175,36 @@ public class MusicListActivity extends BaseActivity {
         });
         //snail*
 
-
-        Intent i = new Intent(this, MusicService.class);
-        startService(i);
-        bindService(i, mServiceConnection, BIND_AUTO_CREATE);
-
-
-        setViewPager();
-        Button_Click();
-        settoolbar();
-
-        //3秒移开导图
-        HandlerUtil.getInstance(this).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                splashScreen.removeSplashScreen();
-            }
-        }, 3000);
-
-        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
-
     }
-
 
     //snail*
     private void sendRequestWithOkHttp(String address, okhttp3.Callback callback) {
 
 //        Intent intent = getIntent();
-//        String data = intent.getStringExtra("userinfo");
-        String data = "111";
+//        returnedData = intent.getStringExtra("userinfo");
+//        Log.d("aa",returnedData);
+//        String data = "111";
+
+        //snail**3
+        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+        boolean state = pref.getBoolean("registerState", false);
+        String id = pref.getString("userid", "");
+        Log.d("aa", "状态："+state);
+        Log.d("aa", "登录id："+id);
+
+//        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+        String data = null;
+//        boolean state = pref.getBoolean("registerState", false);
+        if (state) {
+//            data = pref.getString("userid", "");
+            data = id;
+        } else {
+//            data = returnedData;
+            data = "222";
+        }
+
+        //snail**3
+
         Toast.makeText(MusicListActivity.this, data, Toast.LENGTH_SHORT).show();
 
 
@@ -192,7 +217,7 @@ public class MusicListActivity extends BaseActivity {
 
 
     }
-    private void parseJSONWithGson(String jsonData) throws JSONException {
+    protected void parseJSONWithGson(String jsonData) throws JSONException {
 
         Gson gson = new Gson();
         List<App> appList = gson.fromJson(jsonData, new TypeToken<List<App>>()
@@ -218,9 +243,19 @@ public class MusicListActivity extends BaseActivity {
                     FragmentMine.unameTV.setText(necheng);
                     FragmentMine.uidTV.setText(wechatID);
 
-                    Glide.with(MusicListActivity.this).load(url1).into(FragmentMine.uphotoIV);
+                    Glide.with(MusicListActivity.this).load(url1).into(uphotoIV);
                     Glide.with(MusicListActivity.this).load(url2).into(FragmentMine.usexIV);
                     Glide.with(MusicListActivity.this).load(url3).into(FragmentMine.ucodeIV);
+
+                    FragmentMine.uphotoIV.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+//                Log.d("aa","bb");
+                            Intent intent = new Intent(MusicListActivity.this, LoginActivity.class);
+                            startActivityForResult(intent, 1);
+                        }
+                    });
+
 
 
                 }
@@ -230,6 +265,24 @@ public class MusicListActivity extends BaseActivity {
         }
 
     }
+
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        switch (requestCode) {
+//            case 1:
+//                if (resultCode == RESULT_OK) {
+//                    returnedData = data.getStringExtra("registerState");
+//                    Log.d("MusicListActivity","777"+returnedData);
+//                } else {
+//                    returnedData = "111";
+//                }
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+
     //snail*
 
 
@@ -467,8 +520,7 @@ public class MusicListActivity extends BaseActivity {
 
     private MusicService.MusicServiceIBinder mMusicService;
 
-    private ServiceConnection mServiceConnection = new ServiceConnection()
-    {
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -523,6 +575,12 @@ public class MusicListActivity extends BaseActivity {
                 }
             }
             break;
+
+//            case R.id.user_photo: {
+//                Log.d("MusicListActivity", "bbb" + "cccc");
+//            }
+            default:
+                break;
         }
     }
 
