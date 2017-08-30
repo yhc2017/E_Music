@@ -19,7 +19,8 @@ import com.anddle.music.uitl.BindView;
 
 public class RegisterActivity extends AppCompatActivity{
 
-   @BindView(R.id.register_toolbar)Toolbar mToolbar;
+//   @BindView(R.id.register_toolbar)
+    Toolbar mToolbar;
     Toast mToast;
     Intent intent;
 

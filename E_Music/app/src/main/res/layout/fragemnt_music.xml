@@ -15,4 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="跳转注册页面检测"/>
+
+    <RelativeLayout
+        android:id="@+id/ceshilayout"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/re_item_bg">
+        </RelativeLayout>
 </LinearLayout>
