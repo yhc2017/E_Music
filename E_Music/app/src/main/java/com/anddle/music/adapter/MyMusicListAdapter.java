@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.anddle.music.R;
 import com.anddle.music.activity.MusicListView;
+import com.anddle.music.model.MyMusicItem;
 
 import java.util.List;
 

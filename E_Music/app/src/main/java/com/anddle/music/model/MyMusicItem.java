@@ -1,4 +1,4 @@
-package com.anddle.music.adapter;
+package com.anddle.music.model;
 
 /**
  * Created by HUAHUA on 2017/8/12.

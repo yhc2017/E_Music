@@ -109,101 +109,101 @@ public class UserMessageFirstSettingActvity extends AppCompatActivity {
             int id = v.getId();
             switch (id) {
                 //换头像
-                case R.id.user_message_photo_view :
-//                    Log.d("UserMessageFiestSetting", "hhhh");
-                    Toast.makeText(mContext,"选择图片",Toast.LENGTH_SHORT).show();
-                    break;
-                //昵称
-                case R.id.user_message_name_view: {
-
-                    /**
-                     * 如果没有空指针了，你可以试试这块能不能运行显示
-                     */
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-//                    View view = LayoutInflater.from(mContext).inflate(R.layout.inputdialog, null);
-////                    builder.setTitle("昵称");
-//                    builder.setView(view);
+//                case R.id.user_message_photo_view :
+////                    Log.d("UserMessageFiestSetting", "hhhh");
+//                    Toast.makeText(mContext,"选择图片",Toast.LENGTH_SHORT).show();
+//                    break;
+//                //昵称
+//                case R.id.user_message_name_view: {
+//
+//                    /**
+//                     * 如果没有空指针了，你可以试试这块能不能运行显示
+//                     */
+////                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+////                    View view = LayoutInflater.from(mContext).inflate(R.layout.inputdialog, null);
+//////                    builder.setTitle("昵称");
+////                    builder.setView(view);
+////                    builder.setCancelable(true);
+////                    builder.create().show();
+//
+//                    final android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(mContext);
+//                    builder.setIcon(R.mipmap.ic_playlist);
+//                    builder.setTitle(R.string.play_list);
+//                    builder.setMessage(getString(R.string.no_song));
 //                    builder.setCancelable(true);
 //                    builder.create().show();
-
-                    final android.app.AlertDialog.Builder builder=new android.app.AlertDialog.Builder(mContext);
-                    builder.setIcon(R.mipmap.ic_playlist);
-                    builder.setTitle(R.string.play_list);
-                    builder.setMessage(getString(R.string.no_song));
-                    builder.setCancelable(true);
-                    builder.create().show();
-                    break;
-                }
-                //id
-                case R.id.user_message_id_view:{
-                    InputDialog inputName = new InputDialog(mContext);
-                    inputName.setTips("设置自己ID(设置后不能改变）");
-                    inputName.setSingle(true).setOnClickBottomListener(new InputDialog.OnClickBottomListener() {
-                        @Override
-                        public void onYesClick() {
-                            Toast.makeText(mContext,"点击了确认按钮",Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onNoClick() {
-                            Toast.makeText(mContext,"点击了取消按钮",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    break;
-                }
-                //性别
-                case R.id.user_message_sex_view:{
-
-                    break;
-                }
-                //大学
-                case R.id.user_message_college_view:{
-
-                    break;
-                }
-                //专业
-                case R.id.user_message_major_view:{
-
-                    break;
-                }
-                //修改密码
-                case R.id.user_message_password_view:{
-                    InputDialog inputName = new InputDialog(mContext);
-                    inputName.setTips("请修改你的密码");
-                    inputName.setMessage("建议密码同时中含有数字和字母");
-                    inputName.setSingle(true).setOnClickBottomListener(new InputDialog.OnClickBottomListener() {
-                        @Override
-                        public void onYesClick() {
-                            Toast.makeText(mContext,"点击了确认按钮",Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onNoClick() {
-                            Toast.makeText(mContext,"点击了取消按钮",Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    break;
-                }
-                //绑定qq
-                case R.id.user_message_qq_view:{
-
-                    break;
-                }
-                //绑定微信
-                case R.id.user_message_weixin_view:{
-
-                    break;
-                }
-                //绑定邮箱
-                case R.id.user_message_email_view:{
-
-                    break;
-                }
-                //提交按钮
-                case R.id.user_message_submit:{
-                    Toast.makeText(mContext,"提交按钮",Toast.LENGTH_SHORT).show();
-                    break;
-                }
+//                    break;
+//                }
+//                //id
+//                case R.id.user_message_id_view:{
+//                    InputDialog inputName = new InputDialog(mContext);
+//                    inputName.setTips("设置自己ID(设置后不能改变）");
+//                    inputName.setSingle(true).setOnClickBottomListener(new InputDialog.OnClickBottomListener() {
+//                        @Override
+//                        public void onYesClick() {
+//                            Toast.makeText(mContext,"点击了确认按钮",Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onNoClick() {
+//                            Toast.makeText(mContext,"点击了取消按钮",Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                    break;
+//                }
+//                //性别
+//                case R.id.user_message_sex_view:{
+//
+//                    break;
+//                }
+//                //大学
+//                case R.id.user_message_college_view:{
+//
+//                    break;
+//                }
+//                //专业
+//                case R.id.user_message_major_view:{
+//
+//                    break;
+//                }
+//                //修改密码
+//                case R.id.user_message_password_view:{
+//                    InputDialog inputName = new InputDialog(mContext);
+//                    inputName.setTips("请修改你的密码");
+//                    inputName.setMessage("建议密码同时中含有数字和字母");
+//                    inputName.setSingle(true).setOnClickBottomListener(new InputDialog.OnClickBottomListener() {
+//                        @Override
+//                        public void onYesClick() {
+//                            Toast.makeText(mContext,"点击了确认按钮",Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onNoClick() {
+//                            Toast.makeText(mContext,"点击了取消按钮",Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                    break;
+//                }
+//                //绑定qq
+//                case R.id.user_message_qq_view:{
+//
+//                    break;
+//                }
+//                //绑定微信
+//                case R.id.user_message_weixin_view:{
+//
+//                    break;
+//                }
+//                //绑定邮箱
+//                case R.id.user_message_email_view:{
+//
+//                    break;
+//                }
+//                //提交按钮
+//                case R.id.user_message_submit:{
+//                    Toast.makeText(mContext,"提交按钮",Toast.LENGTH_SHORT).show();
+//                    break;
+//                }
                 default:
                     break;
             }

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anddle.music.R;
-import com.anddle.music.adapter.MyMusicItem;
+import com.anddle.music.model.MyMusicItem;
 import com.anddle.music.adapter.MyMusicListAdapter;
 import com.anddle.music.widget.DividerItemDecoration;
 
