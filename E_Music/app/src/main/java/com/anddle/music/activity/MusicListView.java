@@ -93,6 +93,7 @@ public class MusicListView extends BaseActivity {
             }
 
         });
+
     }
 
 //更新音乐
@@ -224,9 +225,9 @@ public class MusicListView extends BaseActivity {
             else {
                 updatePlayingInfo(item);
             }
-//            if(mMusicService.isPlaying()) {
-//                mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
-//            }
+            if(mMusicService.isPlaying()) {
+                mPlayBtn.setBackgroundResource(R.mipmap.ic_pause);
+            }
         }
 
         @Override

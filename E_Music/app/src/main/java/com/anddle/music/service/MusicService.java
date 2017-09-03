@@ -67,7 +67,7 @@ public class MusicService extends Service {
         public void run() {
             if (mMusicPlayer.isPlaying()) {
                 long time = mMusicPlayer.getCurrentPosition();
-                PlayMusicView.Lrc(time);
+                PlayMusicView.Lrc_update(time);
             }
 
             handler.postDelayed(this, 100);
@@ -82,6 +82,7 @@ public class MusicService extends Service {
     public static final String ACTION_PLAY_MUSIC_UPDATE = "com.anddle.anddlemusic.playupdate";
 
     private List<OnStateChangeListenr> mListenerList = new ArrayList<OnStateChangeListenr>();
+    //创建一个List
     private List<MusicItem> mPlayList;
 
     private MusicItem mCurrentMusicItem;
@@ -177,7 +178,7 @@ public class MusicService extends Service {
                 item.thumb.recycle();
             }
         }
-
+        handler.removeCallbacks(runnable);
         mPlayList.clear();
     }
 
@@ -215,11 +216,13 @@ public class MusicService extends Service {
 
         public void seekTo(int pos) {
             seekToInner(pos);
+            //拉动滚动条，改变歌词
+            long time = mMusicPlayer.getCurrentPosition();
+            PlayMusicView.Lrc_onDrag(time);
         }
 
         public void registerOnStateChangeListener(OnStateChangeListenr l) {
             registerOnStateChangeListenerInner(l);
-
         }
 
         public void unregisterOnStateChangeListener(OnStateChangeListenr l) {
@@ -263,10 +266,10 @@ public class MusicService extends Service {
 //添加到播放列表
     private void addPlayListInner(MusicItem item, boolean needPlay) {
 //          当播放列表存在同一首歌，就不执行播放
-        if(mPlayList.contains(item)) {
-            mMusicPlayer.start();
-            return;
-        }
+//        if(mPlayList.contains(item)) {
+//            mMusicPlayer.start();
+//            return;
+//        }
 //在播放列表添加（mPlayList是播放列表）
         mPlayList.add(0, item);
 //把播放列表存入数据库
@@ -356,6 +359,7 @@ public class MusicService extends Service {
     }
 
     private void initPlayList() {
+
         mPlayList.clear();
 
         Cursor cursor = mResolver.query(
@@ -374,7 +378,7 @@ public class MusicService extends Service {
             long playedTime = cursor.getLong(cursor.getColumnIndexOrThrow(DBHelper.LAST_PLAY_TIME));
             long duration = cursor.getLong(cursor.getColumnIndexOrThrow(DBHelper.DURATION));
 
-            MusicItem item = new MusicItem(Uri.parse(songUri), Uri.parse(albumUri), name, player, duration, playedTime/*, isLastPlaying*/);
+            MusicItem item = new MusicItem(Uri.parse(songUri), Uri.parse(albumUri), name, player, duration, playedTime);
             mPlayList.add(item);
         }
 
