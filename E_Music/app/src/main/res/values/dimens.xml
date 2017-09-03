@@ -12,4 +12,17 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
+
+    <!--类似recyclerview的item的高度-->
+    <dimen name="re_view_item_hight">50dp</dimen>
+    <dimen name="re_view_item_top_hight">10dp</dimen>
+
+
+    <!--列表的字体大小-->
+    <dimen name="font_size_right">18sp</dimen>
+    <dimen name="font_size_left">17sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_19">19sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_21">21sp</dimen>
 </resources>

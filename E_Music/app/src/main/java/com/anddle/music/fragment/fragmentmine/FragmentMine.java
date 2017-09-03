@@ -66,6 +66,15 @@ public class FragmentMine extends Fragment {
         ucodeIV = (ImageView) view.findViewById(R.id.user_code);
         unameTV = (TextView) view.findViewById(R.id.user_name);
         uidTV = (TextView) view.findViewById(R.id.user_id);
+
+//        uphotoIV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Log.d("aa","bb");
+//                Intent intent = new Intent(FragmentMine.this, LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         //snail*
 
 

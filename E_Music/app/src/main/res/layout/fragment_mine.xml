@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--滚动视图-->
 <!--<ScrollView-->
     <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
@@ -21,10 +20,9 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:orientation="vertical">
 
         <!--用户名片-->
         <LinearLayout
@@ -32,69 +30,67 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="0dp"
-            android:background="#fff"
-            >
+            android:background="#fff">
+
             <android.support.percent.PercentFrameLayout
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center_vertical"
-                >
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
-                    app:layout_widthPercent="92%"
-                    app:layout_heightPercent="90%"
                     android:layout_marginLeft="15dp"
-                    android:weightSum="1">
+                    android:paddingLeft="15dp"
+                    android:weightSum="1"
+                    app:layout_heightPercent="90%"
+                    app:layout_widthPercent="92%">
 
                     <ImageView
                         android:id="@+id/user_photo"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@mipmap/china"
-                         />
+                        android:layout_height="100dp"/>
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp">
+
                         <TextView
                             android:id="@+id/user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:textSize="20sp"
-                            android:text="ZJX"/>
+                            android:textSize="20sp" />
+
                         <TextView
                             android:id="@+id/user_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/user_name"
                             android:layout_alignLeft="@+id/user_name"
+                            android:layout_below="@+id/user_name"
                             android:paddingTop="10dp"
-                            android:textSize="15sp"
-                            android:text="ZJX"/>
+                            android:textSize="15sp" />
+
                         <ImageView
                             android:id="@+id/user_sex_pic"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:background="#000"
-                            android:layout_toRightOf="@+id/user_name"
-                           android:layout_marginLeft="10dp"
-                            />
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/user_name" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="28dp"
-                        android:layout_alignParentRight="true">
+                        android:layout_alignParentRight="true"
+                        android:paddingTop="28dp">
+
                         <ImageView
                             android:id="@+id/user_code"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_alignParentRight="true"
-                            android:src="@mipmap/china"
-                            />
+                            android:layout_alignParentRight="true"/>
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -117,21 +113,20 @@
             android:layout_marginTop="1dp"
             android:background="#ffff"
             app:tabIndicatorColor="#1993FB"
-            app:tabTextColor="#000"
             app:tabSelectedTextColor="#1993FB"
-            />
+            app:tabTextColor="#000" />
         <!--app:tabMode="fixed"-->
         <!--</RelativeLayout>-->
         <android.support.v4.view.ViewPager
             android:id="@+id/tab"
-            android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_below="@+id/userTabs"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
             android:background="#fff">
 
         </android.support.v4.view.ViewPager>
     </LinearLayout>
-<!--</ScrollView>-->
+    <!--</ScrollView>-->
 </LinearLayout>

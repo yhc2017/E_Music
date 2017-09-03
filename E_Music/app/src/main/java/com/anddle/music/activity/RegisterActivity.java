@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.anddle.music.R;
 import com.anddle.music.fragment.FragmentMusic;
+import com.anddle.music.uitl.BindView;
 
 /**
  * Created by HUAHUA on 2017/8/24.
@@ -18,7 +19,8 @@ import com.anddle.music.fragment.FragmentMusic;
 
 public class RegisterActivity extends AppCompatActivity{
 
-    private Toolbar mToolbar;
+//   @BindView(R.id.register_toolbar)
+    Toolbar mToolbar;
     Toast mToast;
     Intent intent;
 
