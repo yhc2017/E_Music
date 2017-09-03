@@ -180,8 +180,7 @@ public class MusicListActivity extends BaseActivity {
 
         });
         //snail*
-
-<<<<<<< HEAD
+        
 
         Intent i = new Intent(this, MusicService.class);
         startService(i);
@@ -206,8 +205,6 @@ public class MusicListActivity extends BaseActivity {
 
 //        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
 
-=======
->>>>>>> d534285405e86d0772f852b21fd1e8b48019b41e
     }
 
     //snail*
