@@ -54,18 +54,15 @@
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.PlaysActivity" />
         <activity android:name=".activity.RegisterActivity" />
-<<<<<<< HEAD
-
         <service
             android:name=".service.LockService"
             android:enabled="true"
             android:exported="true" />
 
         <activity android:name=".widget.MyLockScreenActivity"></activity>
-=======
+
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.UserMessageFirstSettingActvity" />
->>>>>>> d534285405e86d0772f852b21fd1e8b48019b41e
     </application>
 
 </manifest>
