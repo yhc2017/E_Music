@@ -50,10 +50,16 @@
                 <action android:name="com.anddle.music.MY_ACTION" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.PlaysActivity"></activity>
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.PlaysActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+
+        <service
+            android:name=".service.LockService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".widget.MyLockScreenActivity"></activity>
     </application>
 
 </manifest>

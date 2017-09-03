@@ -28,6 +28,7 @@ import com.anddle.music.fragment.FragmentFriend;
 import com.anddle.music.fragment.FragmentMusic;
 import com.anddle.music.fragment.fragmentmine.FragmentMine;
 import com.anddle.music.handler.HandlerUtil;
+import com.anddle.music.service.LockService;
 import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 import com.anddle.music.widget.SplashScreen;
@@ -80,6 +81,7 @@ public class MusicListActivity extends BaseActivity {
         splashScreen.show(R.drawable.loading, SplashScreen.SLIDE_LEFT);//一进入APP先是一幅图片（引导图片）
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_music_list);
 
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -160,6 +162,10 @@ public class MusicListActivity extends BaseActivity {
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
 
+        //开始锁屏service
+        startService(new Intent(this, LockService.class));
+
+
 
         setViewPager();
         Button_Click();
@@ -173,7 +179,7 @@ public class MusicListActivity extends BaseActivity {
             }
         }, 3000);
 
-        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -318,14 +324,6 @@ public class MusicListActivity extends BaseActivity {
 
         });
 
-        //侧边栏事件
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MusicListActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
         //首选   navView.setCheckedItem(R.id.add_friends);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -53,6 +53,7 @@ public class PlayMusicView extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.music_player);
         //全局显示-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -150,9 +151,6 @@ public class PlayMusicView extends AppCompatActivity {
         else {
             builder.setMessage(getString(R.string.no_song));
         }
-
-
-
 
         builder.setCancelable(true);
         builder.create().show();
