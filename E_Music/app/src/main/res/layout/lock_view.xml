@@ -38,7 +38,7 @@
             android:padding="5dp">
 
             <Button
-                android:id="@+id/play_btn2"
+                android:id="@+id/play_btn3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
@@ -47,22 +47,22 @@
                 />
 
             <Button
-                android:id="@+id/pre_btn2"
+                android:id="@+id/pre_btn3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@id/play_btn2"
+                android:layout_toLeftOf="@id/play_btn3"
                 android:layout_centerVertical="true"
                 android:text=""
                 android:background="@mipmap/ic_pre"
                 />
 
             <Button
-                android:id="@+id/next_btn2"
+                android:id="@+id/next_btn3"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/play_btn2"
+                android:layout_toRightOf="@id/play_btn3"
                 android:layout_centerVertical="true"
                 android:text=""
                 android:background="@mipmap/ic_next"

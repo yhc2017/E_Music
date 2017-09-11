@@ -3,6 +3,7 @@ package com.anddle.music.activity;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.database.Cursor;
@@ -24,7 +25,9 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.anddle.music.DBHelper;
 import com.anddle.music.MusicItem;
+import com.anddle.music.PlayListContentProvider;
 import com.anddle.music.R;
 import com.anddle.music.adapter.MusicItemAdapter;
 import com.anddle.music.service.MusicService;
@@ -38,7 +41,8 @@ public class MusicListView extends BaseActivity {
 
     static public String TAG = "MusicListView";
     private List<MusicItem> mMusicList;
-    private ListView mMusicListView;
+    private static ListView mMusicListView;
+    private ContentResolver mResolver;
 
     private Button mPlayBtn;
     private Button mPreBtn;
@@ -84,8 +88,10 @@ public class MusicListView extends BaseActivity {
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
 
+
         mImageView = (ImageView) findViewById(R.id.image_thumb);
         mImageView.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(MusicListView.this, PlayMusicView.class);
@@ -171,6 +177,8 @@ public class MusicListView extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        for(int i = 0; i<mMusicList.size();i++)
+            insertMusicItemToContentProvider(mMusicList.get(i));
 
         if(mMusicUpdateTask != null && mMusicUpdateTask.getStatus() == AsyncTask.Status.RUNNING){
             mMusicUpdateTask.cancel(true);
@@ -183,6 +191,18 @@ public class MusicListView extends BaseActivity {
                 item.thumb = null;       }
         }
         mMusicList.clear();
+    }
+
+    private void insertMusicItemToContentProvider(MusicItem item) {
+
+        ContentValues cv = new ContentValues();
+        cv.put(DBHelper.NAME, item.name);
+        cv.put(DBHelper.PLAY, item.player);
+        cv.put(DBHelper.DURATION, item.duration);
+        cv.put(DBHelper.LAST_PLAY_TIME, item.playedTime);
+        cv.put(DBHelper.SONG_URI, item.songUri.toString());
+        cv.put(DBHelper.ALBUM_URI, item.albumUri.toString());
+        Uri uri = mResolver.insert(PlayListContentProvider.CONTENT_SONGS_URI, cv);
     }
 
     private SeekBar.OnSeekBarChangeListener mOnSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -287,7 +307,6 @@ public class MusicListView extends BaseActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if(mMusicService != null) {
                 mMusicService.addPlayList(mMusicList.get(position));
-
             }
         }
     };

@@ -16,11 +16,13 @@
             android:name=".activity.MusicListActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
 
         <service
@@ -47,23 +49,18 @@
         <activity android:name=".activity.Activity_nav" />
         <activity android:name=".activity.PlayMusicView" />
         <activity android:name=".activity.MusicListView">
-            <intent-filter>
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-                <action android:name="com.anddle.music.MY_ACTION" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.PlaysActivity" />
         <activity android:name=".activity.RegisterActivity" />
+
         <service
             android:name=".service.LockService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".widget.MyLockScreenActivity"></activity>
-
+        <activity android:name=".activity.MyLockScreenActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.UserMessageFirstSettingActvity" />
     </application>

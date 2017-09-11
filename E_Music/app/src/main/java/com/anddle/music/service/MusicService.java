@@ -146,6 +146,8 @@ public class MusicService extends Service {
             prepareToPlay(mCurrentMusicItem);
         }
 
+
+
         updateAppWidget(mCurrentMusicItem);
 
     }
@@ -216,6 +218,10 @@ public class MusicService extends Service {
 
         public void seekTo(int pos) {
             seekToInner(pos);
+        }
+        //特
+        public void seekToView(int pos) {
+            seekToInner(pos);
             //拉动滚动条，改变歌词
             long time = mMusicPlayer.getCurrentPosition();
             PlayMusicView.Lrc_onDrag(time);
@@ -266,19 +272,30 @@ public class MusicService extends Service {
 //添加到播放列表
     private void addPlayListInner(MusicItem item, boolean needPlay) {
 //          当播放列表存在同一首歌，就不执行播放
-//        if(mPlayList.contains(item)) {
-//            mMusicPlayer.start();
-//            return;
-//        }
-//在播放列表添加（mPlayList是播放列表）
-        mPlayList.add(0, item);
-//把播放列表存入数据库
-        insertMusicItemToContentProvider(item);
+        if(mPlayList.contains(item)) {
 
-        if(needPlay) {
-            mCurrentMusicItem = mPlayList.get(0);
-            playInner();
+            mPlayList.add(0, item);
+
+            if(needPlay) {
+                mCurrentMusicItem = mPlayList.get(0);
+                playInner();
+            }
+
+            mPlayList.remove(0);
         }
+        else {
+            //在播放列表添加（mPlayList是播放列表）
+            mPlayList.add(0, item);
+            //把播放列表存入数据库
+            insertMusicItemToContentProvider(item);
+            if(needPlay) {
+                mCurrentMusicItem = mPlayList.get(0);
+                playInner();
+            }
+        }
+
+
+
 
     }
 
@@ -441,6 +458,8 @@ public class MusicService extends Service {
         cv.put(DBHelper.ALBUM_URI, item.albumUri.toString());
         Uri uri = mResolver.insert(PlayListContentProvider.CONTENT_SONGS_URI, cv);
     }
+
+
 
     private void updateMusicItem(MusicItem item) {
 

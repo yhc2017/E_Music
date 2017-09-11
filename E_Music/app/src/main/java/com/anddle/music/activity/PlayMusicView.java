@@ -58,7 +58,7 @@ public class PlayMusicView extends AppCompatActivity {
         //全局显示-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //歌词
+//        //歌词
         lrcSmall = (LrcView) findViewById(R.id.lrc_small);
         lrcSmall.loadLrc(getLrcText("cbg.lrc"));
 
@@ -90,11 +90,10 @@ public class PlayMusicView extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
-
-
         BtClick();
 
     }
+
 
     private String getLrcText(String fileName) {
         String lrcText = null;
@@ -258,7 +257,7 @@ public class PlayMusicView extends AppCompatActivity {
         public void onStopTrackingTouch(SeekBar seekBar) {
 
             if(mMusicService != null) {
-                mMusicService.seekTo(seekBar.getProgress());
+                mMusicService.seekToView(seekBar.getProgress());
             }
         }
     };

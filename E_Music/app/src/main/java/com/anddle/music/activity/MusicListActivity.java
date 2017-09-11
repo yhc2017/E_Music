@@ -110,6 +110,10 @@ public class MusicListActivity extends BaseActivity {
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
 
+        //开始锁屏service
+        startService(new Intent(this, LockService.class));
+
+
         setViewPager();
         Button_Click();
         settoolbar();
@@ -182,26 +186,18 @@ public class MusicListActivity extends BaseActivity {
         //snail*
         
 
-        Intent i = new Intent(this, MusicService.class);
-        startService(i);
-        bindService(i, mServiceConnection, BIND_AUTO_CREATE);
+//
+//        setViewPager();
+//        Button_Click();
+//        settoolbar();
 
-        //开始锁屏service
-        startService(new Intent(this, LockService.class));
-
-
-
-        setViewPager();
-        Button_Click();
-        settoolbar();
-
-        //3秒移开导图
-        HandlerUtil.getInstance(this).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                splashScreen.removeSplashScreen();
-            }
-        }, 3000);
+//        //3秒移开导图
+//        HandlerUtil.getInstance(this).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                splashScreen.removeSplashScreen();
+//            }
+//        }, 3000);
 
 //        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
 

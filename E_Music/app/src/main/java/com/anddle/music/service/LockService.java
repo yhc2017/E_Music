@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.anddle.music.widget.MyLockScreenActivity;
+import com.anddle.music.activity.MyLockScreenActivity;
 
 /**
  * 在需要的地方开启我们的服务，
