@@ -8,8 +8,10 @@
     android:gravity="center_horizontal">
     <android.support.v7.widget.Toolbar
         android:id="@+id/user_message_toolbar"
+        app:theme="@style/ToolbarTheme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="40dp"
+        android:background="@color/colorHighlight"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,12 +29,14 @@
                 android:background="@color/bg">
                 <RelativeLayout
                     android:id="@+id/user_message_photo_view"
+                    android:clickable="true"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@drawable/re_item_bg">
                     <TextView
+                        android:clickable="false"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
@@ -40,6 +44,7 @@
                         android:textSize="@dimen/font_size_right"/>
                     <ImageView
                         android:id="@+id/user_message_photo"
+                        android:clickable="false"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -50,7 +55,7 @@
                     android:id="@+id/user_message_name_view"
                     android:layout_below="@+id/user_message_photo_view"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@drawable/re_item_bg">
@@ -81,7 +86,7 @@
                     android:id="@+id/user_message_id_view"
                     android:layout_below="@+id/user_message_name_view"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@drawable/re_item_bg">
@@ -106,7 +111,7 @@
                     android:id="@+id/user_message_code_view"
                     android:layout_below="@+id/user_message_id_view"
                     android:layout_width="0dp"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@color/bg">
@@ -142,7 +147,7 @@
                 <RelativeLayout
                     android:id="@+id/user_message_sex_view"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@drawable/re_item_bg">
@@ -172,7 +177,7 @@
                     android:id="@+id/user_message_college_view"
                     android:layout_below="@+id/user_message_sex_view"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@drawable/re_item_bg">
@@ -208,7 +213,7 @@
                     android:id="@+id/user_message_major_view"
                     android:layout_below="@+id/user_message_college_view"
                     android:layout_width="0dp"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@color/bg">
@@ -255,7 +260,7 @@
                 <RelativeLayout
                     android:id="@+id/user_message_password_view"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
                     android:background="@drawable/re_item_bg">
@@ -275,64 +280,15 @@
                         android:textColor="@color/red"
                         android:text="低"/>
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/user_message_qq_view"
-                    android:layout_below="@+id/user_message_password_view"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    app:layout_widthPercent="92%"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/re_item_bg">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/qq"/>
-                    <TextView
-                        android:id="@+id/user_message_qq"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
-                        android:textSize="@dimen/font_size_left"
-                        android:textColor="@color/bule"
-                        android:text="未绑定"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/user_message_weixin_view"
-                    android:layout_below="@+id/user_message_qq_view"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    app:layout_widthPercent="92%"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/re_item_bg">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/weixin"/>
-                    <TextView
-                        android:id="@+id/user_message_weixin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerInParent="true"
-                        android:textSize="@dimen/font_size_left"
-                        android:textColor="@color/bule"
-                        android:text="未绑定"/>
-                </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/user_message_email_view"
                     android:layout_below="@+id/user_message_weixin_view"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="45dp"
                     app:layout_widthPercent="92%"
                     android:gravity="center_vertical"
-                    android:background="@drawable/re_item_bg">
+                    android:background="@color/bg">
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -350,6 +306,60 @@
                         android:textColor="@color/bule"
                         android:text="未绑定"/>
                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/user_message_weixin_view"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    app:layout_widthPercent="92%"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/re_item_bg"
+                    android:layout_below="@+id/user_message_qq_view"
+                    android:layout_alignStart="@+id/user_message_email_view">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/weixin"/>
+                    <TextView
+                        android:id="@+id/user_message_weixin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:textSize="@dimen/font_size_left"
+                        android:textColor="@color/bule"
+                        android:text="未绑定"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/user_message_qq_view"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    app:layout_widthPercent="92%"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/re_item_bg"
+                    android:layout_below="@+id/user_message_password_view"
+                    android:layout_alignStart="@+id/user_message_weixin_view">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/qq"/>
+                    <TextView
+                        android:id="@+id/user_message_qq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:textSize="@dimen/font_size_left"
+                        android:textColor="@color/bule"
+                        android:text="未绑定"/>
+                </RelativeLayout>
             </android.support.percent.PercentRelativeLayout>
             <LinearLayout
                 android:layout_below="@+id/safemessage_view"
@@ -357,7 +367,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal">
                 <Button
-                    android:id="@+id/user_message_sbmit"
+                    android:id="@+id/user_message_submit"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"

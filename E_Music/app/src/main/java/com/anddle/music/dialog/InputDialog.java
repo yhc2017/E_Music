@@ -22,12 +22,18 @@ public class InputDialog extends Dialog{
     /**
      * 实例化对象
      */
-    @BindView(R.id.dialog_input_tips)TextView mTips;
-    @BindView(R.id.dialog_input_image)ImageView mImage;
-    @BindView(R.id.dialog_input_message)EditText mMessage;
-    @BindView(R.id.dialog_input_no)Button mBtnNo;
-    @BindView(R.id.dialog_input_yes)Button mBtnYes;
-    @BindView(R.id.column_line)View columnLineView;
+//    @BindView(R.id.dialog_input_tips)TextView mTips;
+//    @BindView(R.id.dialog_input_image)ImageView mImage;
+//    @BindView(R.id.dialog_input_message)EditText mMessage;
+//    @BindView(R.id.dialog_input_no)Button mBtnNo;
+//    @BindView(R.id.dialog_input_yes)Button mBtnYes;
+//    @BindView(R.id.column_line)View columnLineView;
+
+    TextView mTips;
+    ImageView mImage;
+    EditText mMessage;
+    Button mBtnNo,mBtnYes;
+    View columnLineView;
     /**
      * 设置对话框风格
      */
@@ -52,6 +58,8 @@ public class InputDialog extends Dialog{
         setContentView(R.layout.inputdialog);
         //按空白处不能取消动画
         setCanceledOnTouchOutside(false);
+        //引入资源
+        setview();
         //初始化界面数据
         refreshView();
         //初始化界面控件的事件
@@ -59,12 +67,23 @@ public class InputDialog extends Dialog{
 
     }
 
+    /**
+     * 引入资源
+     */
+    public void setview(){
+         mTips = (TextView)findViewById(R.id.dialog_input_tips);
+         mImage = (ImageView)findViewById(R.id.dialog_input_image);
+         mMessage = (EditText)findViewById(R.id.dialog_input_message);
+         mBtnNo = (Button)findViewById(R.id.dialog_input_no);
+         mBtnYes = (Button)findViewById(R.id.dialog_input_yes);
+         columnLineView = (View)findViewById(R.id.column_line);
+    }
 
 
     /**
      * 初始化界面的确定和取消监听器
      */
-    private void setEvent() {
+    public void setEvent() {
         //设置确定按钮被点击后，向外界提供监听
         mBtnYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +107,7 @@ public class InputDialog extends Dialog{
     /**
      * 初始化页面显示
      */
-    private void refreshView() {
+    public void refreshView() {
         //设置tips
         if (!TextUtils.isEmpty(tips)){
             mTips.setText(tips);

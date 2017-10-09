@@ -2,8 +2,8 @@
 <resources>
     <color name="bg">#fff</color>
 
-    <color name="colorPrimary">#c6c6c6</color>
-    <color name="colorPrimaryDark">#c6c6c6</color>
+    <color name="colorPrimary">#E8E8E8</color>
+    <color name="colorPrimaryDark">#EDEDED</color>
     <color name="colorAccent">#0069ac</color>
     <color name="colorContract">#09C</color>
     <color name="colorHighlight">#1993FB</color>

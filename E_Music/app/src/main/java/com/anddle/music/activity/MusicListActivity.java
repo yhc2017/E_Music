@@ -29,6 +29,7 @@ import com.anddle.music.fragment.FragmentFriend;
 import com.anddle.music.fragment.FragmentMusic;
 import com.anddle.music.fragment.fragmentmine.FragmentMine;
 import com.anddle.music.handler.HandlerUtil;
+import com.anddle.music.service.LockService;
 import com.anddle.music.service.MusicService;
 import com.anddle.music.uitl.Utils;
 import com.anddle.music.widget.SplashScreen;
@@ -55,6 +56,9 @@ public class MusicListActivity extends BaseActivity {
     private Button mPlayBtn;
     private Button mPreBtn;
     private Button mNextBtn;
+
+    private Button user;
+
     private TextView mMusicTitle;
     private TextView mPlayedTime;
     private TextView mDurationTime;
@@ -85,6 +89,7 @@ public class MusicListActivity extends BaseActivity {
         splashScreen.show(R.drawable.loading, SplashScreen.SLIDE_LEFT);//一进入APP先是一幅图片（引导图片）
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_music_list);
 
         navView = (NavigationView) findViewById(R.id.nav_view);
@@ -92,6 +97,7 @@ public class MusicListActivity extends BaseActivity {
         mPlayBtn = (Button) findViewById(R.id.play_btn);
         mPreBtn = (Button) findViewById(R.id.pre_btn);
         mNextBtn = (Button) findViewById(R.id.next_btn);
+        user = (Button) findViewById(R.id.user_pic);
 
         mMusicTitle = (TextView) findViewById(R.id.music_title);
 
@@ -103,6 +109,10 @@ public class MusicListActivity extends BaseActivity {
         Intent i = new Intent(this, MusicService.class);
         startService(i);
         bindService(i, mServiceConnection, BIND_AUTO_CREATE);
+
+        //开始锁屏service
+        startService(new Intent(this, LockService.class));
+
 
         setViewPager();
         Button_Click();
@@ -174,6 +184,22 @@ public class MusicListActivity extends BaseActivity {
 
         });
         //snail*
+        
+
+//
+//        setViewPager();
+//        Button_Click();
+//        settoolbar();
+
+//        //3秒移开导图
+//        HandlerUtil.getInstance(this).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                splashScreen.removeSplashScreen();
+//            }
+//        }, 3000);
+
+//        Toast.makeText(MusicListActivity.this,"555",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -346,7 +372,6 @@ public class MusicListActivity extends BaseActivity {
 
         });
 
-        //侧边栏事件
         //首选   navView.setCheckedItem(R.id.add_friends);
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

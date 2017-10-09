@@ -64,7 +64,7 @@
                         android:textSize="14sp"
                         android:layout_weight="1"/>
 
-                    </LinearLayout>
+                </LinearLayout>
 
             <TextView
                 android:id="@+id/music_duration"

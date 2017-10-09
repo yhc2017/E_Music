@@ -64,7 +64,17 @@ public class SplashScreen {
                     splashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 }
+
                 Window window = splashDialog.getWindow();
+
+//8/27号加
+//                if (Build.VERSION.SDK_INT >= 21){
+////                    View decorView = splashDialog.getWindow().getDecorView();
+////                    decorView.setSystemUiVisibility( View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE );
+//                    splashDialog.getWindow().setStatusBarColor(000);
+//                }
+
+
                 switch (animation) {
                     case SLIDE_LEFT:
                         window.setWindowAnimations(R.style.dialog_anim_slide_left);
@@ -80,6 +90,7 @@ public class SplashScreen {
                 splashDialog.setContentView(root);
                 splashDialog.setCancelable(false);
                 splashDialog.show();
+
 
                 // Set Runnable to remove splash screen just in case
                 /*final Handler handler = new Handler();
