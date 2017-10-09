@@ -180,11 +180,6 @@ public class MusicListActivity extends BaseActivity {
     //snail*
     private void sendRequestWithOkHttp(String address, okhttp3.Callback callback) {
 
-//        Intent intent = getIntent();
-//        returnedData = intent.getStringExtra("userinfo");
-//        Log.d("aa",returnedData);
-//        String data = "111";
-
         //snail**3
         SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
         boolean state = pref.getBoolean("registerState", false);
@@ -266,22 +261,6 @@ public class MusicListActivity extends BaseActivity {
 
     }
 
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        switch (requestCode) {
-//            case 1:
-//                if (resultCode == RESULT_OK) {
-//                    returnedData = data.getStringExtra("registerState");
-//                    Log.d("MusicListActivity","777"+returnedData);
-//                } else {
-//                    returnedData = "111";
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 
     //snail*
 
