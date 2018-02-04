@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                Toast.makeText(LoginActivity.this, logidInfo, Toast.LENGTH_SHORT).show();
 //                Toast.makeText(LoginActivity.this, logpwdInfo, Toast.LENGTH_SHORT).show();
 
-                sendRequestWithOkHttp("http://117.48.203.145/chkuser.php", new okhttp3.Callback(){
+                sendRequestWithOkHttp("http://193.112.12.207/chkuser.php", new okhttp3.Callback(){
                     /**
                      * Called when the request could not be executed due to cancellation, a connectivity problem or
                      * timeout. Because networks can fail during an exchange, it is possible that the remote server
@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //*******
         OkHttpClient client = new OkHttpClient(); //创建 OkHttpClient实例
         RequestBody requestBody = new FormBody.Builder().add("userid", logidInfo).add("pwd", logpwdInfo).build();
-        Request request = new Request.Builder().url("http://117.48.203.145/chkuser.php").post(requestBody).build();
+        Request request = new Request.Builder().url("http://193.112.12.207/chkuser.php").post(requestBody).build();
         client.newCall(request).enqueue(callback);
         //*******
 
